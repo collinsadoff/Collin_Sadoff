@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+.env*.local
+.netlify
+
+# Local working material, deliberately not published.
+# reference/ holds the job posting PDF and a design reference screenshot.
+# This repo is public, so keeping them out avoids naming a specific employer
+# on a site that is meant to stay brand-neutral.
+reference/
+
+# Generated on demand by the Download PDF button; not source.
+Collin-Sadoff-Resume.pdf

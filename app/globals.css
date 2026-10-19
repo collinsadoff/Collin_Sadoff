@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* --------------------------------------------------------------------------
+   THEME
+   Strictly black / white / gray. No accent colors anywhere - the work on the
+   page supplies the color. Tailwind v4 reads these as utility values, e.g.
+   bg-ink, text-fog, border-line.
+   -------------------------------------------------------------------------- */
+@theme {
+  --color-ink: #0a0a0a; /* page background */
+  --color-ink-2: #121212; /* raised surface */
+  --color-ink-3: #1a1a1a; /* hover surface */
+  --color-line: #262626; /* hairline divider */
+  --color-line-2: #333333; /* stronger hairline */
+  --color-chalk: #f5f5f5; /* primary text */
+  --color-fog: #a3a3a3; /* secondary text */
+  --color-fog-2: #8a8a8a; /* tertiary / metadata - 5.7:1 on ink, AA at 11px */
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   BASE
+   -------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Sticky nav height, so anchor links don't land under the bar. */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-chalk);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Visible, consistent focus for keyboard users on a dark ground. */
+  :focus-visible {
+    outline: 2px solid var(--color-chalk);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-chalk);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Media never overflows its reserved box. */
+  img,
+  video,
+  iframe {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   UTILITIES
+   -------------------------------------------------------------------------- */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-fog-2);
+}
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+/* Hairline frame marks - the crop-mark accent used on section headers. */
+@utility crop-mark {
+  position: relative;
+}
+
+/* A faint film-grain wash. Generated, no image request. */
+@utility grain {
+  position: relative;
+  isolation: isolate;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   MOTION
+   Every animation in the app is additionally gated in JS, but this is the
+   belt-and-braces CSS kill switch.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PRINT
+   Printing /resume outputs the resume sheet only: no nav, no toolbar, no dark
+   background, no page margins fighting the sheet's own padding.
+   -------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: letter portrait;
+    /* 0.45in keeps the one-page fit; still well inside any printer's
+       non-printable edge. */
+    margin: 0.45in;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-sheet {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: #000000 !important;
+  }
+
+  /* Keep a role and its bullets together where the printer allows it. */
+  .print-block {
+    break-inside: avoid;
+  }
+}
