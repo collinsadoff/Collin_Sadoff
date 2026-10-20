@@ -44,6 +44,7 @@ scripts/
   make-preview.mjs      Master video -> web-ready loop + poster (needs ffmpeg)
   prepare-uploads.mjs   Rename + compress finished films for hosting
   upload-names.json     The rename map prepare-uploads.mjs reads
+  set-video-urls.mjs    Fill every project's hosted URL from one base URL
 public/                 >>> DROP YOUR MEDIA HERE <<<
 ```
 
@@ -232,6 +233,28 @@ Each entry carries a `sure` flag. `false` means the name came from looking at sa
 Settings: H.264 CRF 23, long edge capped at 1920 so vertical stays a true 1080×1920, `+faststart`, and **audio kept** at AAC 128k. That last one is the deliberate difference from the preview loops, which strip audio entirely — these are the full pieces and the mix is part of the work.
 
 Flags: `--in`, `--out`, `--map`, `--crf` (raise to 26 to roughly halve file size), `--preset`, `--max`, `--jobs`, `--dry-run`, `--force`.
+
+**Poster mode** writes one still per film instead of video:
+
+```bash
+node scripts/prepare-uploads.mjs --posters
+```
+
+Stills come from the originals, so they are first-generation, and land in `public/work/` named after the project. The frame is 25% in by default; set a `"poster": "00:00:12"` on an entry in the map to choose a better one and re-run with `--force`. That default is worth overriding — on a property tour it landed on the bathroom.
+
+Baked-in letterbox bars are trimmed automatically, so a film with a 2.39:1 look doesn't put black bars inside its tile. The trim only fires when the bars are **symmetric**, which is what separates a real letterbox from a dark sky or a centre-lit stage. If a film's delivered video keeps its bars, set `"autocrop": false` on that entry so the poster keeps them too — poster and video should be the same shape, or the tile crops one to fit the other.
+
+### Filling in hosted video URLs: `scripts/set-video-urls.mjs`
+
+Every file in `Vids/Upload Ready/` is named after its project id, so once they're uploaded with those names intact you don't paste URLs one at a time:
+
+```bash
+node scripts/set-video-urls.mjs https://storage.googleapis.com/your-bucket --check
+```
+
+That writes `<base>/<id>.mp4` into every `mp4` entry in `content/projects.ts` that doesn't already have one, leaving anything hosted on Vimeo or Bunny alone. `--check` requests each URL first and reports status, content type and size — run it once, because a 403 (object not public) or `application/octet-stream` (wrong content type) are the two mistakes that break playback silently.
+
+Flags: `--dry-run`, `--force`, `--check`.
 
 ---
 

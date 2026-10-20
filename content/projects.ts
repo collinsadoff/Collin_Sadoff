@@ -9,7 +9,8 @@
  *   id           Unique slug. Used for React keys and lightbox navigation.
  *   title        Project title. Rendered uppercase as "CLIENT | TITLE".
  *   client       Client name. Rendered uppercase before the pipe.
- *   categories   One or more of CATEGORIES (below). Drives the filter bar.
+ *   categories   One or more of CATEGORIES (below). Context only - shown on
+ *                tile hover and in the lightbox. There is no filter bar.
  *   aspectRatio  width / height as a NUMBER: 16/9, 9/16, 1, 4/5, 2.39.
  *                This is what the justified grid uses to size the tile, so it
  *                must match the real media or the row will look off.
@@ -109,203 +110,263 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  // ==========================================================================
+  // TWO THINGS STILL NEED YOU, both marked inline below:
+  //
+  //   1. video.src is "" on every entry. Paste the hosted URL in and the
+  //      lightbox plays it; until then it shows a placeholder frame.
+  //
+  //   2. Entries marked `CLIENT TBD` are ones I identified from frames but
+  //      could not attribute. Replace the client, and check the title while
+  //      you are there. Everything above the "unconfirmed" divider has a
+  //      client confirmed by on-screen evidence.
+  //
+  // `role` is a conservative default of Edited + Color on every entry, since
+  // I cannot tell from footage what you shot versus finished. Add "Shot",
+  // "Sound", "Drone" or "Motion Graphics" where they apply - the lightbox
+  // lists them, and they are the clearest signal of range on the whole site.
+  // ==========================================================================
+
+  // ---- client confirmed ----------------------------------------------------
+
   {
-    id: "cornerstone-site-film",
-    title: "Site Film",
-    client: "Cornerstone Construction",
-    categories: ["Construction"],
-    aspectRatio: 16 / 9,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2025",
-    role: ["Shot", "Edited", "Color", "Sound", "Drone"],
-    tools: ["DaVinci Resolve", "Sony A7 IV", "DJI Mini 5 Pro"],
-    description:
-      "A single-day shoot across an active build site, cut into a brand film that tracks a project from foundation to framing.",
-    featured: true,
-  },
-  {
-    id: "hickory-brand-film",
+    id: "goat-turf-brand-film",
     title: "Brand Film",
-    client: "Hickory Construction",
-    categories: ["Construction"],
-    aspectRatio: 2.39,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2025",
-    role: ["Shot", "Edited", "Color", "Sound"],
-    tools: ["DaVinci Resolve", "Fairlight", "Fusion"],
-    description:
-      "Anamorphic-framed brand piece built around crew interviews, graded warm to sit alongside the company's print collateral.",
-    featured: true,
-  },
-  {
-    id: "svn-listing-tour",
-    title: "Listing Tour",
-    client: "SVN",
-    categories: ["Real Estate"],
-    aspectRatio: 16 / 9,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2025",
-    role: ["Shot", "Edited", "Color", "Drone"],
-    tools: ["DaVinci Resolve", "DJI Mini 5 Pro"],
-    description:
-      "Commercial property walkthrough combining drone exteriors with stabilized interior moves.",
-  },
-  {
-    id: "dodson-interiors",
-    title: "Interiors",
-    client: "Dodson Designs",
-    categories: ["Real Estate"],
-    aspectRatio: 4 / 5,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2024",
-    role: ["Shot", "Edited", "Color"],
-    tools: ["DaVinci Resolve"],
-    description:
-      "Social cut built for feed placement, with a grade tuned to keep interior whites clean under mixed lighting.",
-  },
-  {
-    id: "reach-member-stories",
-    title: "Member Stories",
-    client: "Reach Fitness",
-    categories: ["Fitness"],
-    aspectRatio: 9 / 16,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2025",
-    role: ["Shot", "Edited", "Color", "Sound"],
-    tools: ["DaVinci Resolve", "Fairlight"],
-    description:
-      "Recurring vertical series profiling members, delivered on a weekly cadence from a repeatable template.",
-  },
-  {
-    id: "revitalyze-clinic-spot",
-    title: "Clinic Spot",
-    client: "Revitalyze MD",
-    categories: ["Medical"],
-    aspectRatio: 16 / 9,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2024",
-    role: ["Shot", "Edited", "Color", "Sound", "Motion Graphics"],
-    tools: ["DaVinci Resolve", "Fusion"],
-    description:
-      "Broadcast-style clinic spot with Fusion lower thirds and a mix balanced for both web and in-office playback.",
-  },
-  {
-    id: "russell-biven-on-camera",
-    title: "On Camera",
-    client: "Russell Biven",
-    categories: ["Public Figures"],
-    aspectRatio: 1,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2024",
-    role: ["Shot", "Edited", "Color", "Sound"],
-    tools: ["DaVinci Resolve"],
-    description:
-      "Square-format talent piece cut for social, lit and graded to keep skin tones consistent across two locations.",
-  },
-  {
-    id: "goat-turf-install-day",
-    title: "Install Day",
     client: "Goat Turf",
     categories: ["Construction", "Real Estate"],
     aspectRatio: 9 / 16,
-    poster: "",
+    poster: "/work/goat-turf-brand-film.webp",
     video: { type: "mp4", src: "" },
-    year: "2025",
-    role: ["Shot", "Edited", "Color"],
-    tools: ["DaVinci Resolve", "Sony A7 IV"],
-    description:
-      "Vertical process film following a single install from tear-out to finished yard.",
-  },
-  {
-    id: "expoquip-trade-show",
-    title: "Trade Show Recap",
-    client: "Expoquip",
-    categories: ["Construction", "Events"],
-    aspectRatio: 16 / 9,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2024",
-    role: ["Shot", "Edited", "Color", "Sound"],
+    role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
-      "Same-week event recap shot across a multi-day show floor and turned around for post-event follow-up.",
+      "Brand film built around the crew and the trucks, cut vertical for social.",
+    featured: true,
   },
   {
-    id: "curt-maggitt-training-day",
-    title: "Training Day",
-    client: "Curt Maggitt",
-    categories: ["Public Figures", "Fitness"],
-    aspectRatio: 9 / 16,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2025",
-    role: ["Shot", "Edited", "Color", "Sound"],
-    tools: ["DaVinci Resolve", "Fairlight"],
-    description:
-      "High-contrast vertical training piece, cut to the rhythm of the session rather than to a music bed.",
-  },
-  {
-    id: "breazeale-patient-story",
-    title: "Patient Story",
-    client: "Breazeale Clinic",
-    categories: ["Medical"],
+    id: "1509-texas-ave-property-tour",
+    title: "Property Tour",
+    client: "1509 Texas Ave",
+    categories: ["Real Estate"],
     aspectRatio: 16 / 9,
-    poster: "",
+    poster: "/work/1509-texas-ave-property-tour.webp",
     video: { type: "mp4", src: "" },
-    year: "2024",
-    role: ["Shot", "Edited", "Color", "Sound"],
-    tools: ["DaVinci Resolve", "Fairlight"],
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
     description:
-      "Interview-led patient story with a quiet mix that keeps dialogue forward and music well under it.",
+      "Walkthrough of a finished renovation, interiors through to the exterior approach.",
   },
   {
-    id: "evolve-class-promo",
-    title: "Class Promo",
+    id: "bent-river-steel-install",
+    title: "Steel Install",
+    client: "Bent River",
+    categories: ["Construction"],
+    aspectRatio: 9 / 16,
+    poster: "/work/bent-river-steel-install.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Crane lift and steel placement on an active site, cut as a short vertical hook.",
+  },
+  {
+    id: "evolve-fitness-team",
+    title: "The Team",
     client: "Evolve Fitness",
     categories: ["Fitness"],
-    aspectRatio: 4 / 5,
-    poster: "",
+    aspectRatio: 9 / 16,
+    poster: "/work/evolve-fitness-team.webp",
     video: { type: "mp4", src: "" },
-    year: "2025",
-    role: ["Shot", "Edited", "Color", "Motion Graphics"],
-    tools: ["DaVinci Resolve", "Fusion"],
-    description:
-      "Short promo with animated schedule cards, exported to platform-specific loudness targets.",
-  },
-  {
-    id: "aj-johnson-event-recap",
-    title: "Event Recap",
-    client: "AJ Johnson",
-    categories: ["Public Figures", "Events"],
-    aspectRatio: 1,
-    poster: "",
-    video: { type: "mp4", src: "" },
-    year: "2024",
-    role: ["Shot", "Edited", "Color", "Sound"],
+    role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
-      "Live event coverage condensed into a square recap built for same-day posting.",
+      "Captioned vertical piece introducing the gym and the people in it.",
   },
   {
-    id: "bubble-short-film",
-    title: "Short Film",
-    client: "Bubble",
+    id: "roofplan-commercial-roofing",
+    title: "Commercial Roofing",
+    client: "RoofPlan",
+    categories: ["Construction"],
+    aspectRatio: 16 / 9,
+    poster: "/work/roofplan-commercial-roofing.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Rooftop work shot from the air at golden hour, scaled across a commercial property.",
+    featured: true,
+  },
+  {
+    id: "pti-performance-training",
+    title: "Performance Training",
+    client: "PTI",
+    categories: ["Fitness"],
+    aspectRatio: 9 / 16,
+    poster: "/work/pti-performance-training.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Training floor piece cut vertical, from the facility exterior into the session.",
+  },
+  {
+    id: "wedding-jared-amanda",
+    title: "Wedding Film",
+    client: "Jared & Amanda",
+    categories: ["Events"],
+    // 16:9. The film is letterboxed to roughly 2.15:1 for parts of its
+    // runtime as a look; the poster keeps those bars so the two match.
+    aspectRatio: 16 / 9,
+    poster: "/work/wedding-jared-amanda.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Downtown ceremony and reception, cut as a story-driven film from a live one-take event.",
+  },
+
+  // ---- client unconfirmed: replace `CLIENT TBD` before publishing ---------
+
+  {
+    id: "lakefront-home-aerial",
+    title: "Lakefront Home",
+    client: "CLIENT TBD",
+    categories: ["Real Estate"],
+    aspectRatio: 9 / 16,
+    poster: "/work/lakefront-home-aerial.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description: "Aerial tour of a lakefront property and its grounds.",
+  },
+  {
+    id: "live-music-concert",
+    title: "Live Music",
+    client: "CLIENT TBD",
     categories: ["Events"],
     aspectRatio: 16 / 9,
-    poster: "",
+    poster: "/work/live-music-concert.webp",
     video: { type: "mp4", src: "" },
-    year: "2023",
-    role: ["Shot", "Edited", "Color", "Sound", "Motion Graphics"],
-    tools: ["DaVinci Resolve", "Fusion", "Fairlight"],
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
     description:
-      "Narrative short shot in S-Log3 and finished end to end - grade, mix, titles.",
+      "Concert coverage cut to the performance, shot under heavy stage lighting.",
+  },
+  {
+    id: "metal-fabrication",
+    title: "Fabrication",
+    client: "CLIENT TBD",
+    categories: ["Construction"],
+    aspectRatio: 9 / 16,
+    poster: "/work/metal-fabrication.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Shop-floor process piece: CNC plasma cutting, welding, and finished assemblies.",
+  },
+  {
+    id: "garden-gate-landscape",
+    title: "Landscape Design",
+    client: "CLIENT TBD",
+    categories: ["Real Estate"],
+    aspectRatio: 9 / 16,
+    poster: "/work/garden-gate-landscape.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "A designed garden shot as a slow walk through it. Opens on a title card reading “The art of landscape design”.",
+  },
+  {
+    id: "concrete-parking-structure",
+    title: "Parking Structure",
+    client: "CLIENT TBD",
+    categories: ["Construction"],
+    aspectRatio: 9 / 16,
+    poster: "/work/concrete-parking-structure.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Captioned vertical on a concrete deck build, from aerial scale down to crews finishing the surface.",
+  },
+  {
+    id: "gym-comeback-promo",
+    title: "Comeback",
+    client: "CLIENT TBD",
+    categories: ["Fitness"],
+    aspectRatio: 9 / 16,
+    poster: "/work/gym-comeback-promo.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description: "Captioned gym promo cut to a spoken piece to camera.",
+  },
+  {
+    id: "stone-slab-yard",
+    title: "Slab Yard",
+    client: "CLIENT TBD",
+    categories: ["Construction"],
+    aspectRatio: 16 / 9,
+    poster: "/work/stone-slab-yard.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Stone selection and fabrication, from the slab yard through to finishing by hand.",
+  },
+  {
+    id: "reflecting-pool-landscape",
+    title: "Garden & Pool",
+    client: "CLIENT TBD",
+    categories: ["Real Estate"],
+    aspectRatio: 9 / 16,
+    poster: "/work/reflecting-pool-landscape.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Planting, pergola and water in a designed outdoor space. Possibly the same property as Landscape Design.",
+  },
+  {
+    id: "playground-turf-install",
+    title: "Playground Install",
+    client: "CLIENT TBD",
+    categories: ["Construction"],
+    aspectRatio: 9 / 16,
+    poster: "/work/playground-turf-install.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Playground equipment set on new artificial turf, cut as a captioned vertical.",
+  },
+  {
+    id: "lawn-before-after-aerial",
+    title: "Before & After",
+    client: "CLIENT TBD",
+    categories: ["Real Estate"],
+    aspectRatio: 9 / 16,
+    poster: "/work/lawn-before-after-aerial.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Aerial before-and-after on a residential lawn, with an on-screen reveal.",
+  },
+  {
+    id: "hardscape-pavers",
+    title: "Hardscape",
+    client: "CLIENT TBD",
+    categories: ["Construction"],
+    aspectRatio: 9 / 16,
+    poster: "/work/hardscape-pavers.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Edited", "Color"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Stone patio and paver detail work, shot close and cut slow.",
   },
 ];
 
