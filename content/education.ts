@@ -12,7 +12,7 @@ export type Education = {
   /** Optional abbreviation shown in parentheses. */
   schoolShort?: string;
   location?: string;
-  /** TODO (Collin): add your graduation year. "" hides it. */
+  /** Graduation year. "" omits it rather than printing a placeholder. */
   year: string;
 };
 
@@ -23,6 +23,6 @@ export const education: Education[] = [
     school: "Pellissippi State Community College",
     schoolShort: "PSTCC",
     location: "Knoxville, TN",
-    year: "", // TODO (Collin): e.g. "2017"
+    year: "2020",
   },
 ];
