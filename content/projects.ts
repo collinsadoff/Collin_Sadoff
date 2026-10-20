@@ -113,27 +113,19 @@ export type Project = {
 
 export const projects: Project[] = [
   // ==========================================================================
-  // TWO THINGS STILL NEED YOU, both marked inline below:
-  //
-  //   1. video.src is "" on every entry. Paste the hosted URL in and the
-  //      lightbox plays it; until then it shows a placeholder frame.
-  //
-  //   2. Entries marked `CLIENT TBD` are ones I identified from frames but
-  //      could not attribute. Replace the client, and check the title while
-  //      you are there. Everything above the "unconfirmed" divider has a
-  //      client confirmed by on-screen evidence.
+  // Titles and clients are Collin's own, as supplied. Grid order is array
+  // order, so the first row is doing the most work - rearrange here to change
+  // what someone sees first.
   //
   // `role` is Directed / Shot / Edited / Color / Sound on every entry, which
-  // is what Collin confirmed he did on all of these. Add "Drone" to the
-  // aerial pieces and "Motion Graphics" where titles or graphics were built -
-  // the lightbox lists them, and they are the clearest signal of range here.
+  // is what he did on all of these. Add "Drone" to the aerial pieces and
+  // "Motion Graphics" where titles or graphics were built - the lightbox
+  // lists them, and they are the clearest signal of range here.
   // ==========================================================================
-
-  // ---- client confirmed ----------------------------------------------------
 
   {
     id: "goat-turf-brand-film",
-    title: "Brand Film",
+    title: "Truck Wrap",
     client: "Goat Turf",
     categories: ["Construction", "Real Estate"],
     aspectRatio: 9 / 16,
@@ -147,8 +139,8 @@ export const projects: Project[] = [
   },
   {
     id: "1509-texas-ave-property-tour",
-    title: "Property Tour",
-    client: "1509 Texas Ave",
+    title: "1509 Texas Ave",
+    client: "",
     categories: ["Real Estate"],
     aspectRatio: 16 / 9,
     poster: "/work/1509-texas-ave-property-tour.webp",
@@ -161,7 +153,7 @@ export const projects: Project[] = [
   {
     id: "bent-river-steel-install",
     title: "Steel Install",
-    client: "Bent River",
+    client: "",
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/bent-river-steel-install.webp",
@@ -173,7 +165,7 @@ export const projects: Project[] = [
   },
   {
     id: "evolve-fitness-team",
-    title: "The Team",
+    title: "",
     client: "Evolve Fitness",
     categories: ["Fitness"],
     aspectRatio: 9 / 16,
@@ -201,7 +193,7 @@ export const projects: Project[] = [
   {
     id: "pti-performance-training",
     title: "Performance Training",
-    client: "PTI",
+    client: "",
     categories: ["Fitness"],
     aspectRatio: 9 / 16,
     poster: "/work/pti-performance-training.webp",
@@ -229,8 +221,8 @@ export const projects: Project[] = [
 
   {
     id: "costa-rica-travel-film",
-    title: "Travel Film",
-    client: "Costa Rica",
+    title: "Lost in the Rainforest",
+    client: "",
     categories: ["Travel"],
     aspectRatio: 9 / 16,
     poster: "/work/costa-rica-travel-film.webp",
@@ -242,8 +234,8 @@ export const projects: Project[] = [
   },
   {
     id: "costa-rica-wildlife",
-    title: "Wildlife",
-    client: "Costa Rica",
+    title: "Experience Costa Rica",
+    client: "",
     categories: ["Travel"],
     aspectRatio: 9 / 16,
     poster: "/work/costa-rica-wildlife.webp",
@@ -254,12 +246,10 @@ export const projects: Project[] = [
       "Sunset over a sea stack, windswept hillside and a monkey in the canopy. Captured 8K vertical.",
   },
 
-  // ---- client unconfirmed: replace `CLIENT TBD` before publishing ---------
-
   {
     id: "lakefront-home-aerial",
-    title: "Lakefront Home",
-    client: "CLIENT TBD",
+    title: "Lakefront Turf & Pool",
+    client: "",
     categories: ["Real Estate"],
     aspectRatio: 9 / 16,
     poster: "/work/lakefront-home-aerial.webp",
@@ -270,8 +260,8 @@ export const projects: Project[] = [
   },
   {
     id: "live-music-concert",
-    title: "Live Music",
-    client: "CLIENT TBD",
+    title: "Concert",
+    client: "Moon Taxi",
     categories: ["Events"],
     aspectRatio: 16 / 9,
     poster: "/work/live-music-concert.webp",
@@ -284,7 +274,7 @@ export const projects: Project[] = [
   {
     id: "metal-fabrication",
     title: "Fabrication",
-    client: "CLIENT TBD",
+    client: "TMG",
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/metal-fabrication.webp",
@@ -296,8 +286,8 @@ export const projects: Project[] = [
   },
   {
     id: "garden-gate-landscape",
-    title: "Landscape Design",
-    client: "CLIENT TBD",
+    title: "The Art of Landscape Design",
+    client: "",
     categories: ["Real Estate"],
     aspectRatio: 9 / 16,
     poster: "/work/garden-gate-landscape.webp",
@@ -309,8 +299,8 @@ export const projects: Project[] = [
   },
   {
     id: "concrete-parking-structure",
-    title: "Parking Structure",
-    client: "CLIENT TBD",
+    title: "The Mark",
+    client: "Base Install",
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/concrete-parking-structure.webp",
@@ -322,8 +312,8 @@ export const projects: Project[] = [
   },
   {
     id: "gym-comeback-promo",
-    title: "Comeback",
-    client: "CLIENT TBD",
+    title: "",
+    client: "Reach Fitness",
     categories: ["Fitness"],
     aspectRatio: 9 / 16,
     poster: "/work/gym-comeback-promo.webp",
@@ -334,8 +324,8 @@ export const projects: Project[] = [
   },
   {
     id: "stone-slab-yard",
-    title: "Slab Yard",
-    client: "CLIENT TBD",
+    title: "",
+    client: "Smoky Mountain Tops",
     categories: ["Construction"],
     aspectRatio: 16 / 9,
     poster: "/work/stone-slab-yard.webp",
@@ -347,8 +337,8 @@ export const projects: Project[] = [
   },
   {
     id: "reflecting-pool-landscape",
-    title: "Garden & Pool",
-    client: "CLIENT TBD",
+    title: "Showcase",
+    client: "Dodson Designs",
     categories: ["Real Estate"],
     aspectRatio: 9 / 16,
     poster: "/work/reflecting-pool-landscape.webp",
@@ -360,8 +350,8 @@ export const projects: Project[] = [
   },
   {
     id: "playground-turf-install",
-    title: "Playground Install",
-    client: "CLIENT TBD",
+    title: "Playground Turf Install",
+    client: "",
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/playground-turf-install.webp",
@@ -374,7 +364,7 @@ export const projects: Project[] = [
   {
     id: "lawn-before-after-aerial",
     title: "Before & After",
-    client: "CLIENT TBD",
+    client: "Dodson Designs",
     categories: ["Real Estate"],
     aspectRatio: 9 / 16,
     poster: "/work/lawn-before-after-aerial.webp",
@@ -386,8 +376,8 @@ export const projects: Project[] = [
   },
   {
     id: "hardscape-pavers",
-    title: "Hardscape",
-    client: "CLIENT TBD",
+    title: "Luxury Hardscape",
+    client: "",
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/hardscape-pavers.webp",
@@ -398,6 +388,19 @@ export const projects: Project[] = [
       "Stone patio and paver detail work, shot close and cut slow.",
   },
 ];
+
+/**
+ * The tile and lightbox label, e.g. "GOAT TURF | TRUCK WRAP".
+ *
+ * Joins whichever of client and title are filled in. Some pieces are named
+ * for a client and a job, some just carry one name - "1509 Texas Ave",
+ * "Lost in the Rainforest" - and hard-coding "client | title" left those
+ * rendering with a trailing pipe and nothing after it. The CSS uppercases
+ * the result, so the casing stored here does not matter for display.
+ */
+export function projectLabel(project: Pick<Project, "client" | "title">): string {
+  return [project.client, project.title].filter(Boolean).join(" | ");
+}
 
 /** Human-readable aspect label for the placeholder tiles, e.g. "16:9". */
 export function aspectLabel(ratio: number): string {

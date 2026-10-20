@@ -1,7 +1,7 @@
 "use client";
 
 import type { Project } from "@/content/projects";
-import { aspectLabel } from "@/content/projects";
+import { aspectLabel, projectLabel } from "@/content/projects";
 import { LightboxShell } from "@/components/LightboxShell";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { CloseButton } from "@/components/CloseButton";
@@ -37,7 +37,7 @@ export function Lightbox({
       onClose={onClose}
       onPrev={multiple ? onPrev : undefined}
       onNext={multiple ? onNext : undefined}
-      label={project ? `${project.client} ${project.title}` : "Project"}
+      label={project ? projectLabel(project) : "Project"}
     >
       {project ? (
         // justify-center keeps a short landscape film centred; a tall vertical
@@ -47,7 +47,7 @@ export function Lightbox({
           <div className="flex shrink-0 items-start justify-between gap-4 px-5 py-4 sm:px-8">
             <div className="min-w-0">
               <p className="font-display text-sm font-bold tracking-[0.12em] text-chalk uppercase sm:text-lg">
-                {project.client} | {project.title}
+                {projectLabel(project)}
               </p>
               <p className="label mt-1.5">
                 {[
@@ -101,7 +101,7 @@ export function Lightbox({
             >
               <VideoPlayer
                 source={project.video}
-                title={`${project.client} - ${project.title}`}
+                title={projectLabel(project)}
                 poster={project.poster || undefined}
                 placeholderLabel={`${aspectLabel(project.aspectRatio)} - NO VIDEO SOURCE YET`}
               />

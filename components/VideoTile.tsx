@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { aspectLabel, type Project } from "@/content/projects";
+import { aspectLabel, projectLabel, type Project } from "@/content/projects";
 import { MediaPlaceholder } from "@/components/Placeholder";
 import { useInView } from "@/hooks/useInView";
 import { useHasHover } from "@/hooks/useMediaQuery";
@@ -61,7 +61,7 @@ export function VideoTile({
     }
   }, [shouldPlay]);
 
-  const label = `${project.client} | ${project.title}`;
+  const label = projectLabel(project);
 
   return (
     <div
@@ -133,7 +133,7 @@ export function VideoTile({
               reduced ? "" : "group-hover:-translate-y-1"
             }`}
           >
-            {project.client} | {project.title}
+            {label}
           </span>
 
           {/* Placeholder-only: label the aspect ratio while testing layout. */}
