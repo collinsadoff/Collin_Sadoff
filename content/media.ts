@@ -43,12 +43,18 @@ export type Showreel = {
 
 export const showreel: Showreel = {
   aspectRatio: 9 / 16, // vertical-first. Change to 16 / 9 for a wide reel.
-  loop: "", // e.g. "/media/reel-loop.mp4"
-  loopWebm: "", // e.g. "/media/reel-loop.webm"
-  poster: "", // e.g. "/media/reel-poster.jpg"
-  full: { type: "mp4", src: "" }, // e.g. { type: "vimeo", src: "123456789" }
+  loop: "/media/reel-loop.mp4",
+  loopWebm: "",
+  poster: "/media/reel-loop.webp",
+  // Lives in the same Google Cloud Storage bucket as the portfolio films.
+  // It plays as soon as showcase-reel.mp4 is uploaded there; until then this
+  // URL 404s and the button opens a broken player rather than a placeholder.
+  full: {
+    type: "mp4",
+    src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/showcase-reel.mp4",
+  },
   title: "Showreel",
-  runtime: "",
+  runtime: "02:22",
 };
 
 export type Headshot = {

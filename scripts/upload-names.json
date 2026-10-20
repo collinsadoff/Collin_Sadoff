@@ -128,5 +128,12 @@
     "note": "Travel piece: burning orange sunset over a sea stack, beach riders, windswept hillside, a monkey in the canopy. Source is 8K vertical HEVC (4320x7680) - the largest frame in the set.",
     "sure": false,
     "poster": "15%"
+  },
+  "Showcase Reel.mp4": {
+    "name": "showcase-reel",
+    "note": "The showreel itself, 2:22, vertical 9:16. Hosted copy is what the hero \"Play reel with sound\" button opens; the short muted loop that plays behind the hero is built separately into public/media/.",
+    "sure": true,
+    "evidence": "Named by Collin",
+    "poster": "40"
   }
 }
