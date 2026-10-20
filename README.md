@@ -40,6 +40,8 @@ content/                >>> EDIT THESE <<<
 components/             UI. Each file does one thing.
 hooks/                  Justified layout, resize, in-view, media queries
 lib/                    Section registry, video URL builders, resume data
+scripts/
+  make-preview.mjs      Master video -> web-ready loop + poster (needs ffmpeg)
 public/                 >>> DROP YOUR MEDIA HERE <<<
 ```
 
@@ -173,8 +175,39 @@ Raw footage and full-quality renders must never be committed. GitHub rejects any
 The safe workflow:
 
 1. Keep masters **outside** this project folder entirely — a separate drive or folder.
-2. Compress a short preview loop (5–8s, ≤720p, no audio, 1–3MB) into `public/work/`.
+2. Compress a short preview loop (5–8s, ≤720p, no audio, 1–3MB) into `public/work/` — `scripts/make-preview.mjs` does this, see below.
 3. Upload the full video to Bunny/Vimeo/Mux/Cloudflare and reference the id in `content/projects.ts`.
+
+### Making preview loops: `scripts/make-preview.mjs`
+
+Turns a master into the two files a tile needs — a short muted loop and a matching poster — at the right size and settings. Needs [ffmpeg](https://ffmpeg.org/download.html) on your PATH (`winget install Gyan.FFmpeg` on Windows).
+
+```bash
+node scripts/make-preview.mjs --list
+```
+
+```bash
+node scripts/make-preview.mjs "Vids/Clean Eatz.mp4"
+```
+
+That writes `public/work/clean-eatz.mp4` (~400KB) and `public/work/clean-eatz.webp`, then prints a ready-to-paste `content/projects.ts` entry with `aspectRatio` already filled in from the real dimensions — so the grid matches the media instead of you guessing.
+
+**The flag you'll actually use is `--start`.** By default it grabs 6 seconds from 25% into the clip, which usually clears titles and black but won't always be your best 6 seconds:
+
+```bash
+node scripts/make-preview.mjs "Vids/Clean Eatz.mp4" --start 00:00:14 --duration 6 --force
+```
+
+Other flags: `--all` (everything in `Vids/`), `--out`, `--max` (long-edge cap, default 720), `--crf` (quality — raise to 28–30 for smaller files), `--webm` (also emit VP9, usually ~30% smaller), `--jpg` (poster as JPG instead of WebP), `--name`, `--jobs`, `--force`.
+
+What it does for you, so you don't have to remember it:
+
+- strips the audio track entirely rather than just muting it — saves bandwidth and avoids autoplay blocking
+- caps the long edge at 720px, since a tile is only ~380px tall even on the widest layout
+- `+faststart`, so playback can begin before the file finishes downloading
+- pulls the poster from the **same frame the loop starts on**, so hovering a tile doesn't visibly jump
+
+It won't pick a seamless loop point for you — that's an editorial call. If a loop pops on repeat, move `--start` or trim `--duration` until the first and last frames sit closer together.
 
 ---
 
