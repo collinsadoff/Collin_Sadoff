@@ -4,7 +4,8 @@ import { profile } from "@/content/profile";
 import "./globals.css";
 
 const title = `${profile.name} - ${profile.title}`;
-const description = profile.summary;
+// The long summary is for the resume; a link preview gets the short one.
+const description = profile.shareDescription;
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
