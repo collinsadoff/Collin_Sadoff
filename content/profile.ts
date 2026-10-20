@@ -10,6 +10,8 @@
 export type Profile = {
   name: string;
   title: string;
+  /** Phonetic hint shown on the headshot name tag. "" hides it. */
+  pronunciation: string;
   /** One-line positioning statement, used under the hero title. */
   tagline: string;
   /** Short paragraph used for the resume summary and SEO description. */
@@ -33,6 +35,7 @@ export type Profile = {
 export const profile: Profile = {
   name: "Collin Sadoff",
   title: "Video Editor & Post Producer",
+  pronunciation: "Say-doff",
   tagline:
     "Nine years of cutting, grading, and mixing - and shooting when a set needs it. I care about how it feels, not just whether it's technically right.",
   summary:

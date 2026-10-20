@@ -8,7 +8,7 @@ export function About() {
   return (
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
       <Reveal className="lg:col-span-5">
-        <div className="relative w-full max-w-sm overflow-hidden bg-ink-2 [aspect-ratio:4/5] lg:max-w-none">
+        <figure className="relative w-full max-w-sm overflow-hidden bg-ink-2 [aspect-ratio:4/5] lg:max-w-none">
           {headshot.src ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -25,7 +25,27 @@ export function About() {
             aria-hidden="true"
             className="pointer-events-none absolute inset-3 border border-white/[0.07]"
           />
-        </div>
+
+          {/*
+            Name tag. The pronunciation is the point of it: "Sadoff" is the
+            kind of surname people skip over rather than risk saying wrong,
+            and a hiring manager about to pick up the phone benefits from
+            being told. aria-hidden on the phonetic span keeps a screen
+            reader from reading the respelling out as if it were a word.
+          */}
+          <figcaption className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center px-4">
+            <span className="flex flex-col items-center gap-0.5 rounded-full border border-white/15 bg-ink/70 px-4 py-2 backdrop-blur-md sm:px-5">
+              <span className="font-display text-sm font-bold tracking-[0.12em] text-chalk uppercase sm:text-base">
+                {profile.name}
+              </span>
+              {profile.pronunciation ? (
+                <span className="label text-[10px] text-fog" aria-hidden="true">
+                  {profile.pronunciation}
+                </span>
+              ) : null}
+            </span>
+          </figcaption>
+        </figure>
       </Reveal>
 
       <Reveal className="lg:col-span-7" delay={0.08}>

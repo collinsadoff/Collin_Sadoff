@@ -234,8 +234,8 @@ export const projects: Project[] = [
     categories: ["Travel"],
     aspectRatio: 9 / 16,
     poster: "/work/costa-rica-travel-film.webp",
-    video: { type: "mp4", src: "" },
-    role: ["Directed", "Shot", "Edited", "Color", "Sound", "Drone"],
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/costa-rica-travel-film.mp4" },
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Rainforest canopy, coastline and horseback riders shot from the air. Captured 4K vertical.",
@@ -247,8 +247,8 @@ export const projects: Project[] = [
     categories: ["Travel"],
     aspectRatio: 9 / 16,
     poster: "/work/costa-rica-wildlife.webp",
-    video: { type: "mp4", src: "" },
-    role: ["Directed", "Shot", "Edited", "Color", "Sound", "Drone"],
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/costa-rica-wildlife.mp4" },
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Sunset over a sea stack, windswept hillside and a monkey in the canopy. Captured 8K vertical.",

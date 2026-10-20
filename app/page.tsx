@@ -7,7 +7,6 @@ import { About } from "@/components/About";
 import { Process } from "@/components/Process";
 import { Timeline } from "@/components/Timeline";
 import { SkillsGrid } from "@/components/SkillsGrid";
-import { ClientList } from "@/components/ClientList";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { colorComparisons, colorHeading } from "@/content/color";
@@ -77,10 +76,6 @@ export default function HomePage() {
         <Section id="skills">
           <SectionHeader id="skills" label="Skills & Tools" />
           <SkillsGrid />
-        </Section>
-
-        <Section id="clients">
-          <ClientList />
         </Section>
 
         <Section id="contact">

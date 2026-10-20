@@ -40,7 +40,9 @@ export function Lightbox({
       label={project ? `${project.client} ${project.title}` : "Project"}
     >
       {project ? (
-        <div className="flex h-full flex-col overflow-y-auto">
+        // justify-center keeps a short landscape film centred; a tall vertical
+        // one simply scrolls rather than being squashed.
+        <div className="flex h-full flex-col justify-center overflow-y-auto">
           {/* Header */}
           <div className="flex shrink-0 items-start justify-between gap-4 px-5 py-4 sm:px-8">
             <div className="min-w-0">
@@ -72,15 +74,29 @@ export function Lightbox({
             </div>
           </div>
 
-          {/* Player, sized to the project's aspect ratio. */}
-          <div className="flex min-h-0 flex-1 items-center justify-center px-5 sm:px-8">
+          {/*
+            Player, sized to the project's aspect ratio.
+
+            Both limits are expressed on the WIDTH, which is the only way to
+            constrain an aspect-ratio box by height reliably: the height then
+            follows from the ratio and cannot exceed --lb-h. The previous
+            version put the height budget in a max-width of
+            `calc((100vh - 18rem) * ratio)`, and that 18rem guess at
+            "everything that isn't the player" was too small on a phone, where
+            the metadata grid stacks into one column. A 9:16 film then drew
+            itself taller than the space left and the description sat on top
+            of the video.
+
+            shrink-0 keeps flexbox from squeezing it instead of scrolling,
+            since an aspect-ratio box does not give up height when squeezed.
+          */}
+          <div className="flex shrink-0 items-center justify-center px-5 [--lb-h:52vh] sm:px-8 sm:[--lb-h:62vh] lg:[--lb-h:70vh]">
             <div
               key={project.id}
-              className="relative w-full bg-black"
+              className="relative bg-black"
               style={{
                 aspectRatio: project.aspectRatio,
-                // Never taller than the space left over for the player.
-                maxWidth: `calc((100vh - 18rem) * ${project.aspectRatio})`,
+                width: `min(100%, calc(var(--lb-h) * ${project.aspectRatio}))`,
               }}
             >
               <VideoPlayer

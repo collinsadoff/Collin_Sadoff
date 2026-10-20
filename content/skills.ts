@@ -53,8 +53,8 @@ export const skillGroups: SkillGroup[] = [
     items: [
       "Cinematography across log formats",
       "Exposing log correctly for the grade",
-      "Drone",
-      "Lighting",
+      "Drone operator",
+      "Interview & location lighting",
     ],
   },
 ];
@@ -65,9 +65,13 @@ export const software: Software[] = [
     years: "5 yrs",
     detail: "Edit, Color, Fairlight, Fusion",
   },
-  { name: "Adobe Premiere Pro", years: "4 yrs" },
+
   { name: "Final Cut Pro", years: "3 yrs" },
-  { name: "Adobe Photoshop, Lightroom & Creative Cloud" },
+  {
+    name: "Adobe Creative Cloud",
+    years: "9 yrs",
+    detail: "Premiere Pro, Photoshop, Lightroom",
+  },
   { name: "Topaz Video AI, Topaz Photo AI" },
   { name: "Google Drive / Workspace" },
   { name: "Dropbox" },

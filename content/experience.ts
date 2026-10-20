@@ -78,17 +78,14 @@ export const experience: Job[] = [
     dates: "2017 – 2020",
     location: "Knoxville, TN",
     bullets: [
-      // TODO (Collin): replace with specifics — client types, formats, scale,
-      // notable projects. Remove `todo: true` once written so it publishes.
       {
-        text: "Shot and edited video content for a range of clients and formats.",
-        todo: true,
+        text: "Worked commercial sets as part of the production crew, supporting shoots from setup through wrap.",
       },
-      // TODO (Collin): replace with specifics — which skills, which gear,
-      // what you owned. Remove `todo: true` once written so it publishes.
       {
-        text: "Built core skills in camera work, editing, and client-facing production.",
-        todo: true,
+        text: "Filmed and edited weddings end to end, covering live ceremonies that only happen once and cutting them into finished films.",
+      },
+      {
+        text: "Owned all behind-the-scenes content: filmed it, cut it, and managed the deliverable from shoot through to handoff.",
       },
     ],
   },

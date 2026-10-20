@@ -22,7 +22,6 @@ export const sections: Section[] = [
   { id: "process", nav: "Process", label: "How I Work", inNav: true },
   { id: "experience", nav: "Experience", label: "Experience", inNav: true },
   { id: "skills", nav: "Skills", label: "Skills & Tools", inNav: true },
-  { id: "clients", nav: "Clients", label: "Clients", inNav: false },
   { id: "contact", nav: "Contact", label: "Contact", inNav: true },
 ];
 
