@@ -1,0 +1,116 @@
+{
+  "_README": [
+    "Rename map for scripts/prepare-uploads.mjs.",
+    "",
+    "Key   = the file as it exists in the source folder.",
+    "name  = the filename it gets in the output folder (no extension).",
+    "note  = what it looks like, for your reference. Not used by the script.",
+    "sure  = true when the name is backed by evidence, false when it is my",
+    "        read of three sample frames. Fix any `false` before uploading -",
+    "        a wrong client name on a portfolio piece is worse than a vague one.",
+    "",
+    "Names are lowercase with hyphens and no spaces, parentheses or",
+    "apostrophes, because these become public Google Cloud Storage URLs and",
+    "anything else has to be percent-encoded.",
+    "",
+    "Edit freely, then re-run with --force to rebuild."
+  ],
+
+  "1 (1).mp4": {
+    "name": "1509-texas-ave-property-tour",
+    "note": "Empty staged interior, hardwood, green exterior. Real estate walkthrough.",
+    "sure": true,
+    "evidence": "Byte size 110167559 matches '1509 Texas Ave.mp4'"
+  },
+  "1 (4).mp4": {
+    "name": "bent-river-steel-install",
+    "note": "Crane operator, beam lift, interior steel. Construction hook.",
+    "sure": true,
+    "evidence": "Byte size 64954481 matches 'Bent River Project - Reel 2(Hook).mp4'"
+  },
+  "1 (9).mp4": {
+    "name": "evolve-fitness-team",
+    "note": "Dumbbells, 'TEAM OF ABOUT 56' caption, gym floor, kettlebell.",
+    "sure": true,
+    "evidence": "Byte size 84439866 matches 'Evolve Reel1(captions).mp4'"
+  },
+  "1 (12).mp4": {
+    "name": "goat-turf-brand-film",
+    "note": "Branded truck and crew. Goat Turf logo visible on the vehicle.",
+    "sure": true,
+    "evidence": "Byte size 441558033 matches 'Goat Turf Intro Video.mp4'"
+  },
+  "1 (14).mp4": {
+    "name": "wedding-jared-amanda",
+    "note": "Bridal shoes, family portrait, B&W ceremony. 3:48 wedding film.",
+    "sure": true,
+    "evidence": "Byte size 420039769 matches 'Jared + Amanda - Wedding Video.mp4'"
+  },
+  "Roofplan.mp4": {
+    "name": "roofplan-commercial-roofing",
+    "note": "Rooftop aerials at sunset, HVAC units, commercial parking lot.",
+    "sure": true,
+    "evidence": "Already named in the source folder"
+  },
+
+  "1 (17).mp4": {
+    "name": "live-music-concert",
+    "note": "Stage lighting, band performing, crowd. File dated Jan 2021.",
+    "sure": false
+  },
+  "1 (19).mp4": {
+    "name": "pti-performance-training",
+    "note": "'Performance Training, Inc.' building signage, gym floor, assault bike.",
+    "sure": false
+  },
+  "1 (21).mp4": {
+    "name": "gym-comeback-promo",
+    "note": "Gym interior, 'COME BACK IN' caption, medicine ball work. Client unclear.",
+    "sure": false
+  },
+  "1 (48).mp4": {
+    "name": "concrete-parking-structure",
+    "note": "Aerial of concrete deck, crews with grinders, paver work. 'BECAUSE THE' caption.",
+    "sure": false
+  },
+  "1 (53).mp4": {
+    "name": "playground-turf-install",
+    "note": "Playground equipment on artificial turf, 'FEET' caption. Possibly Goat Turf.",
+    "sure": false
+  },
+  "1 (63).mp4": {
+    "name": "lakefront-home-aerial",
+    "note": "Aerial of luxury home with pool, lake, modern architecture.",
+    "sure": false
+  },
+  "1 (64).mp4": {
+    "name": "garden-gate-landscape",
+    "note": "White gate, planting beds, white brick wall, gravel path.",
+    "sure": false
+  },
+  "1 (65).mp4": {
+    "name": "reflecting-pool-landscape",
+    "note": "Garden greenery, pergola, reflecting pool. Same property as garden-gate?",
+    "sure": false
+  },
+  "1 (66).mp4": {
+    "name": "lawn-before-after-aerial",
+    "note": "Aerial of house and lawn with an 'After' caption. Turf before/after.",
+    "sure": false
+  },
+  "1 (67).mp4": {
+    "name": "hardscape-pavers",
+    "note": "Stone patio, concrete pavers in gravel, garden walkway.",
+    "sure": false
+  },
+  "1 (73).mp4": {
+    "name": "metal-fabrication",
+    "note": "CNC plasma cutter, welder, forklift with fabricated steel box.",
+    "sure": false
+  },
+  "1 (76).mp4": {
+    "name": "stone-slab-yard",
+    "note": "Slab yard, two men reviewing samples, forklift moving stone.",
+    "sure": false
+  }
+}

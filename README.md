@@ -42,6 +42,8 @@ hooks/                  Justified layout, resize, in-view, media queries
 lib/                    Section registry, video URL builders, resume data
 scripts/
   make-preview.mjs      Master video -> web-ready loop + poster (needs ffmpeg)
+  prepare-uploads.mjs   Rename + compress finished films for hosting
+  upload-names.json     The rename map prepare-uploads.mjs reads
 public/                 >>> DROP YOUR MEDIA HERE <<<
 ```
 
@@ -208,6 +210,28 @@ What it does for you, so you don't have to remember it:
 - pulls the poster from the **same frame the loop starts on**, so hovering a tile doesn't visibly jump
 
 It won't pick a seamless loop point for you — that's an editorial call. If a loop pops on repeat, move `--start` or trim `--duration` until the first and last frames sit closer together.
+
+### Preparing full films for hosting: `scripts/prepare-uploads.mjs`
+
+The other half of the job. `make-preview.mjs` builds the short loop that lives in `public/`; this one builds the **full film** you upload to Google Cloud Storage, Bunny, Vimeo or wherever — renamed, compressed, and never touching your originals.
+
+```bash
+node scripts/prepare-uploads.mjs --dry-run
+```
+
+```bash
+node scripts/prepare-uploads.mjs
+```
+
+Reads `scripts/upload-names.json`, which maps each source filename to the name you want, and writes compressed copies into `Vids/Upload Ready/` plus a `MANIFEST.md` recording old → new. Source files are only ever read.
+
+Names in that map are lowercase with hyphens and no spaces, parentheses or apostrophes, because they become public URLs — anything else has to be percent-encoded and looks broken when shared.
+
+Each entry carries a `sure` flag. `false` means the name came from looking at sample frames rather than from evidence, and should be checked before publishing. Edit the JSON and re-run with `--force` to rebuild.
+
+Settings: H.264 CRF 23, long edge capped at 1920 so vertical stays a true 1080×1920, `+faststart`, and **audio kept** at AAC 128k. That last one is the deliberate difference from the preview loops, which strip audio entirely — these are the full pieces and the mix is part of the work.
+
+Flags: `--in`, `--out`, `--map`, `--crf` (raise to 26 to roughly halve file size), `--preset`, `--max`, `--jobs`, `--dry-run`, `--force`.
 
 ---
 
