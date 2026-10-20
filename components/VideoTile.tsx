@@ -63,6 +63,21 @@ export function VideoTile({
 
   const label = projectLabel(project);
 
+  /*
+   * Title sizing is driven by the tile's own width, not a viewport unit.
+   *
+   * A viewport-based clamp cannot work here: the justified grid puts tiles of
+   * wildly different widths on the same screen. At 390px a 9:16 tile is 113px
+   * across while a 16:9 tile is 356px, and a single vw-derived size has to
+   * serve both - so "LUXURY HARDSCAPE" was rendering wider than its tile and
+   * getting clipped by the overflow-hidden.
+   *
+   * The grid already computes the exact width and passes it in, so use it.
+   */
+  const titleSize = Math.min(16, Math.max(10.5, width * 0.082));
+  const titlePad = width < 150 ? 6 : width < 220 ? 10 : 16;
+  const titleTracking = width < 150 ? "0.04em" : "0.1em";
+
   return (
     <div
       ref={ref}
@@ -127,11 +142,15 @@ export function VideoTile({
         />
 
         {/* Title block */}
-        <span className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+        <span
+          className="absolute inset-0 flex flex-col items-center justify-center text-center"
+          style={{ paddingLeft: titlePad, paddingRight: titlePad }}
+        >
           <span
-            className={`font-display text-[clamp(0.75rem,1.15vw,1rem)] leading-tight font-bold tracking-[0.1em] text-white uppercase drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`font-display leading-tight font-bold text-white uppercase drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] [overflow-wrap:anywhere] ${
               reduced ? "" : "group-hover:-translate-y-1"
             }`}
+            style={{ fontSize: titleSize, letterSpacing: titleTracking }}
           >
             {label}
           </span>
