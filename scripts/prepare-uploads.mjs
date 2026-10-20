@@ -30,7 +30,11 @@
  *                   map as a "poster" field, which is how you pick a good
  *                   frame rather than accepting whatever is at 25%.
  *   --jpg           Stills as .jpg instead of .webp.
- *   --no-autocrop   Keep baked-in letterbox bars. By default a poster has
+ *   --no-autocrop   Keep baked-in letterbox bars for every film. A single
+ *                   film can opt out instead with "autocrop": false in the
+ *                   map, which is what you want when the delivered video
+ *                   keeps its bars - poster and video should be the same
+ *                   shape, or the tile crops one to fit the other. By default a poster has
  *                   black borders trimmed, so a film with a letterboxed look
  *                   does not put bars inside the tile. The trim is capped at
  *                   12% a side so a genuinely dark shot is left alone.
@@ -355,7 +359,8 @@ async function main() {
           console.log(`  would write ${name.padEnd(38)} frame @ ${at}`);
           return { file, name, dryRun: true };
         }
-        const crop = opts.autocrop ? await detectCrop(src, at) : null;
+        const allowCrop = map[file].autocrop ?? opts.autocrop;
+        const crop = allowCrop ? await detectCrop(src, at) : null;
         const vf = [
           crop?.filter,
           "scale=1600:1600:force_original_aspect_ratio=decrease",

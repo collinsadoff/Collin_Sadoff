@@ -42,10 +42,11 @@
   },
   "1 (14).mp4": {
     "name": "wedding-jared-amanda",
-    "note": "Wedding film, 3:48. The film alternates between full-frame and a 2.15:1 letterboxed look, so the poster is taken from a verified full-frame moment (couple downtown, 3:34) - otherwise the tile would carry baked-in black bars.",
+    "note": "Wedding film, 3:48. Alternates between full-frame and a 2.15:1 letterboxed look. The delivered video stays 16:9, so the poster keeps its bars too (autocrop off) - matching shapes means the tile crops neither. Use aspectRatio 16 / 9 for this one.",
     "sure": true,
     "evidence": "Byte size 420039769 matches 'Jared + Amanda - Wedding Video.mp4'",
-    "poster": "214"
+    "poster": "214",
+    "autocrop": false
   },
   "Roofplan.mp4": {
     "name": "roofplan-commercial-roofing",
