@@ -116,6 +116,7 @@ Create these folders under `public/` and reference them with a leading slash (`/
 | What | Put it in | Set it in |
 |---|---|---|
 | Showreel loop + poster | `public/media/` | `content/media.ts` → `showreel.loop`, `.loopWebm`, `.poster` |
+| Showreel **shape** | — | `content/media.ts` → `showreel.aspectRatio` (see below) |
 | Full showreel | hosted (Bunny/Vimeo/Mux) | `content/media.ts` → `showreel.full` |
 | Project posters | `public/work/` | `poster` on each project |
 | Project preview loops | `public/work/` | `preview` on each project |
@@ -123,6 +124,18 @@ Create these folders under `public/` and reference them with a leading slash (`/
 | Color before/after frames | `public/color/` | `content/color.ts` → `before`, `after` |
 | Headshot | `public/media/` | `content/media.ts` → `headshot.src` |
 | Social card (optional) | `app/opengraph-image.png` | delete `app/opengraph-image.tsx` and Next uses the file |
+
+### Vertical vs. wide showreel
+
+`showreel.aspectRatio` in `content/media.ts` is one number that changes the whole hero layout:
+
+- **`9 / 16`** (the current setting) — vertical-first. The reel stands beside your name, sized to the viewport height and flush to the right margin. This is the right choice when most of your finished work is social/Instagram: on a near-black page with no frame around the video, a vertical reel reads as a column of image rather than as a widescreen video with bars either side. It also keeps your name and the reel on screen together, which a full-width 16:9 band can't do.
+- **`16 / 9`** — the classic full-width band across the top with the name block underneath.
+- **`1`** — square, uses the vertical layout.
+
+Change the number, nothing else. The hero, the placeholder label and the lightbox all follow it.
+
+**If you want a wide reel out of vertical footage**, don't crop — recut. The generic fix (one vertical centred on a blurred copy of itself) looks like an apology for the format. A triptych, where two or three verticals live in frame at once and cut on beat, reads as a deliberate choice and doubles as a craft demo. Worth having regardless, since plenty of employers still ask for "your reel" and expect a 16:9 file.
 
 ### Recommended specs
 
@@ -150,6 +163,18 @@ Create these folders under `public/` and reference them with a leading slash (`/
 - **Vimeo** works the same way and is the easiest if you already have a Pro account.
 - **Direct MP4 from Google Cloud Storage** is supported and works fine, but it does *not* adapt to connection speed — everyone downloads the same file. Use it for short pieces, not a 4-minute brand film.
 - Whichever you pick, keep the files out of this repo. Netlify is not a video host.
+
+### Keep masters out of the project folder
+
+Raw footage and full-quality renders must never be committed. GitHub rejects any single file over 100MB and caps repositories around 5GB, so a folder of masters will fail the push outright — and because this repo is public, anything that *does* land there is permanently in the history.
+
+`.gitignore` already excludes `Vids/`, and `.mp4` / `.mov` / `.braw` / `.r3d` anywhere outside `public/` (web-ready loops under `public/` are small and *are* committed). Tailwind's class scanner is told to skip those folders too: it reads every file in the project to find class names, and a multi-gigabyte video — or one still being written by an export — will slow the dev server down or crash it with a file-lock error.
+
+The safe workflow:
+
+1. Keep masters **outside** this project folder entirely — a separate drive or folder.
+2. Compress a short preview loop (5–8s, ≤720p, no audio, 1–3MB) into `public/work/`.
+3. Upload the full video to Bunny/Vimeo/Mux/Cloudflare and reference the id in `content/projects.ts`.
 
 ---
 

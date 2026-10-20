@@ -1,6 +1,19 @@
 @import "tailwindcss";
 
 /* --------------------------------------------------------------------------
+   SOURCE SCANNING
+   Tailwind v4 scans the project for class names. It skips .gitignored paths,
+   but these are listed explicitly as well: scanning gigabytes of video on
+   every rebuild is slow, and a file still being written (a copy in progress,
+   an export from Resolve) is locked on Windows, which takes the dev server
+   down with a file-read panic rather than a readable error.
+   -------------------------------------------------------------------------- */
+@source not "../Vids";
+@source not "../public/media";
+@source not "../public/work";
+@source not "../public/color";
+
+/* --------------------------------------------------------------------------
    THEME
    Strictly black / white / gray. No accent colors anywhere - the work on the
    page supplies the color. Tailwind v4 reads these as utility values, e.g.

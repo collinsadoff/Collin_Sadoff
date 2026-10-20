@@ -2,6 +2,7 @@
 
 import { showreel } from "@/content/media";
 import { profile } from "@/content/profile";
+import { aspectLabel } from "@/content/projects";
 import { LightboxShell } from "@/components/LightboxShell";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { CloseButton } from "@/components/CloseButton";
@@ -29,14 +30,20 @@ export function ReelLightbox({
       </div>
 
       <div className="flex flex-1 items-center justify-center px-5 pb-8 sm:px-8">
+        {/* Sized from the reel's own ratio, so a 9:16 reel fills the height
+            instead of being letterboxed into a widescreen box. */}
         <div
-          className="relative w-full max-w-[min(100%,calc((100vh-12rem)*16/9))] bg-black [aspect-ratio:16/9]"
+          className="relative w-full bg-black"
+          style={{
+            aspectRatio: showreel.aspectRatio,
+            maxWidth: `calc((100vh - 12rem) * ${showreel.aspectRatio})`,
+          }}
         >
           <VideoPlayer
             source={showreel.full}
             title={`${profile.name} showreel`}
             poster={showreel.poster || undefined}
-            placeholderLabel="SHOWREEL - NO SOURCE YET"
+            placeholderLabel={`${aspectLabel(showreel.aspectRatio)} - NO SOURCE YET`}
           />
         </div>
       </div>

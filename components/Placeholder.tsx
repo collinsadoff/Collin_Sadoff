@@ -108,7 +108,13 @@ export function HeadshotPlaceholder({ className = "" }: { className?: string }) 
  * The hero showreel placeholder: a dark field with a faint moving-image feel
  * (frame lines + a timecode strip) sized 16:9 by its parent.
  */
-export function ReelPlaceholder({ className = "" }: { className?: string }) {
+export function ReelPlaceholder({
+  className = "",
+  aspectLabel = "16:9",
+}: {
+  className?: string;
+  aspectLabel?: string;
+}) {
   return (
     <div
       aria-hidden="true"
@@ -133,7 +139,7 @@ export function ReelPlaceholder({ className = "" }: { className?: string }) {
         SHOWREEL &mdash; PLACEHOLDER
       </span>
       <span className="label absolute right-5 bottom-5 text-white/45">
-        16:9
+        {aspectLabel}
       </span>
     </div>
   );

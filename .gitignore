@@ -15,3 +15,20 @@ reference/
 
 # Generated on demand by the Download PDF button; not source.
 Collin-Sadoff-Resume.pdf
+
+# Raw video masters. These are source footage and full-quality renders, not
+# web assets: they are far too large for git (GitHub rejects anything over
+# 100MB) and far too large to serve. Compress them and host them on a
+# streaming service instead - see README section 4.
+Vids/
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.braw
+*.r3d
+
+# ...but web-ready media under public/ IS meant to be committed: the short
+# preview loops are only 1-3MB each and the site needs them at build time.
+!public/**/*.mp4
+!public/**/*.webm
