@@ -34,7 +34,7 @@ export type ColorComparison = {
 
 export const colorHeading = {
   title: "Color",
-  line: "Shot in S-Log3, graded to match the story. I set the look for a project and then hold it - every shot, every deliverable, across the whole brand.",
+  line: "Shot in log and exposed for the grade, whatever the camera. I set the look for a project and then hold it - every shot, every deliverable, across the whole brand.",
 };
 
 export const colorComparisons: ColorComparison[] = [
@@ -45,7 +45,7 @@ export const colorComparisons: ColorComparison[] = [
     before: "",
     after: "",
     aspectRatio: 16 / 9,
-    note: "S-Log3 to Rec.709, warmed through the highlights with the sky held back so the building keeps its edge.",
+    note: "Log to Rec.709, warmed through the highlights with the sky held back so the building keeps its edge.",
   },
   {
     id: "interior-mixed-light",

@@ -58,6 +58,6 @@ export type Headshot = {
 };
 
 export const headshot: Headshot = {
-  src: "", // e.g. "/media/headshot.jpg"
-  alt: "Collin Sadoff",
+  src: "/media/headshot.webp",
+  alt: "Collin Sadoff, video editor and post producer",
 };

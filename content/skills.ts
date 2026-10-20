@@ -5,7 +5,6 @@
  * - `skillGroups`: add/remove a group or reorder its items. No bars, no
  *   percentages, by design — just grouped capability.
  * - `software`: `years` is optional; omit it and only the name renders.
- * - `gear`: a flat list, joined with a middot on the site.
  * The resume page and PDF condense these same arrays into comma-separated lines.
  */
 
@@ -30,9 +29,9 @@ export const skillGroups: SkillGroup[] = [
       "Color grading",
       "Audio mixing (Fairlight)",
       "Motion graphics & compositing (Fusion)",
-      "Subtitles & captions (incl. Spanish SRT)",
+      "Subtitles & captions",
       "Media management & archiving",
-      "Delivery specs for social, web & internal comms",
+      "Delivery specs for social & web",
     ],
   },
   {
@@ -48,14 +47,14 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    // Kept last on purpose: the shooting background is real and useful, but
-    // these roles want it as on-set availability, not as the headline.
-    title: "On-Set Support",
+    // Kept last on purpose: the shooting work is real, but for a post role it
+    // supports the edit rather than leading the pitch.
+    title: "Production",
     items: [
-      "Cinematography (S-Log3)",
+      "Cinematography across log formats",
+      "Exposing log correctly for the grade",
       "Drone",
-      "Lighting & grip",
-      "Available for on-set support",
+      "Lighting",
     ],
   },
 ];
@@ -67,16 +66,12 @@ export const software: Software[] = [
     detail: "Edit, Color, Fairlight, Fusion",
   },
   { name: "Adobe Premiere Pro", years: "4 yrs" },
-  { name: "Final Cut Pro", years: "4 yrs" },
+  { name: "Final Cut Pro", years: "3 yrs" },
   { name: "Adobe Photoshop, Lightroom & Creative Cloud" },
   { name: "Topaz Video AI, Topaz Photo AI" },
   { name: "Google Drive / Workspace" },
+  { name: "Dropbox" },
+  { name: "WeTransfer" },
   { name: "macOS & Windows" },
 ];
 
-export const gear: string[] = [
-  "Sony A7 IV",
-  "Sigma 24–70mm f/2.8",
-  "Laowa 10mm f/2.8",
-  "DJI Mini 5 Pro",
-];

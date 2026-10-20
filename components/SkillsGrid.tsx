@@ -1,7 +1,7 @@
-import { gear, skillGroups, software } from "@/content/skills";
+import { skillGroups, software } from "@/content/skills";
 import { Reveal } from "@/components/Reveal";
 
-/** Grouped skill columns, the software list, and the gear line. No bars. */
+/** Grouped skill columns and the software list. No bars, no percentages. */
 export function SkillsGrid() {
   return (
     <div className="space-y-14">
@@ -42,21 +42,6 @@ export function SkillsGrid() {
         </ul>
       </Reveal>
 
-      <Reveal>
-        <h3 className="label border-b border-line pb-3 text-fog">Gear</h3>
-        <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-base text-chalk">
-          {gear.map((item, index) => (
-            <span key={item} className="flex items-center gap-3">
-              {index > 0 ? (
-                <span aria-hidden="true" className="text-line-2">
-                  /
-                </span>
-              ) : null}
-              {item}
-            </span>
-          ))}
-        </p>
-      </Reveal>
     </div>
   );
 }

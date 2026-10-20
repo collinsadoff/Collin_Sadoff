@@ -143,15 +143,6 @@ export function VideoTile({
             </span>
           ) : null}
 
-          <span
-            className={`label mt-2 text-[10px] text-white/70 transition-all duration-500 ${
-              reduced
-                ? ""
-                : "translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
-            }`}
-          >
-            {project.categories.join(" / ")}
-          </span>
         </span>
       </button>
     </div>

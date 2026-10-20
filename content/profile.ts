@@ -35,10 +35,6 @@ export const profile: Profile = {
   title: "Video Editor & Post Producer",
   tagline:
     "Nine years of cutting, grading, and mixing - and shooting when a set needs it. I care about how it feels, not just whether it's technically right.",
-  // NOTE (Collin): postings for in-house/agency post roles often list internal
-  // communications and presentations as deliverables. If you have actually cut
-  // those, add them to the first sentence - it is an easy match. Left out for
-  // now because I did not want to claim work you may not have done.
   summary:
     "Video editor and post producer with 9 years of experience finishing commercial, social, and event content. Currently lead videographer and lead editor at The Skvara Agency, owning projects through edit, color, sound mix, and delivery, and reviewing other editors' cuts to hold one standard across the team. Strong in DaVinci Resolve (Edit, Color, Fairlight, Fusion), comfortable running a post pipeline, and equally effective on a team or solo.",
   bio: [
@@ -50,7 +46,6 @@ export const profile: Profile = {
     "Based in Knoxville, TN",
     "9 years experience",
     "Mac + Windows",
-    "Team or solo",
   ],
   location: "Knoxville, TN",
   email: "cmsadoff@gmail.com",

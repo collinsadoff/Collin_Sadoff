@@ -25,5 +25,4 @@ export const clients: string[] = [
   "Revitalyze MD",
   "Breazeale Clinic",
   "GM Construction Group",
-  "Bubble (Short Film)",
 ];

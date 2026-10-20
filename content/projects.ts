@@ -26,8 +26,8 @@
  *                  { type: "mp4",        src: "https://.../film.mp4" }
  *                src: "" renders a placeholder frame instead of a player.
  *   year         OPTIONAL. Shown in the lightbox metadata.
- *   role         What you did: "Shot", "Edited", "Color", "Sound",
- *                "Motion Graphics", "Drone".
+ *   role         What you did: "Directed", "Shot", "Edited", "Color",
+ *                "Sound", "Motion Graphics", "Drone".
  *   tools        OPTIONAL list of software used.
  *   description  OPTIONAL 1-3 sentences shown in the lightbox.
  *   featured     OPTIONAL. Reserved for emphasis; does not reorder the grid.
@@ -83,6 +83,7 @@ export type VideoSource = {
 };
 
 export type Role =
+  | "Directed"
   | "Shot"
   | "Edited"
   | "Color"
@@ -121,10 +122,10 @@ export const projects: Project[] = [
   //      you are there. Everything above the "unconfirmed" divider has a
   //      client confirmed by on-screen evidence.
   //
-  // `role` is a conservative default of Edited + Color on every entry, since
-  // I cannot tell from footage what you shot versus finished. Add "Shot",
-  // "Sound", "Drone" or "Motion Graphics" where they apply - the lightbox
-  // lists them, and they are the clearest signal of range on the whole site.
+  // `role` is Directed / Shot / Edited / Color / Sound on every entry, which
+  // is what Collin confirmed he did on all of these. Add "Drone" to the
+  // aerial pieces and "Motion Graphics" where titles or graphics were built -
+  // the lightbox lists them, and they are the clearest signal of range here.
   // ==========================================================================
 
   // ---- client confirmed ----------------------------------------------------
@@ -137,7 +138,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/goat-turf-brand-film.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/goat-turf-brand-film.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Brand film built around the crew and the trucks, cut vertical for social.",
@@ -151,7 +152,7 @@ export const projects: Project[] = [
     aspectRatio: 16 / 9,
     poster: "/work/1509-texas-ave-property-tour.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/1509-texas-ave-property-tour.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Walkthrough of a finished renovation, interiors through to the exterior approach.",
@@ -164,7 +165,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/bent-river-steel-install.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/bent-river-steel-install.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Crane lift and steel placement on an active site, cut as a short vertical hook.",
@@ -177,7 +178,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/evolve-fitness-team.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/evolve-fitness-team.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Captioned vertical piece introducing the gym and the people in it.",
@@ -190,7 +191,7 @@ export const projects: Project[] = [
     aspectRatio: 16 / 9,
     poster: "/work/roofplan-commercial-roofing.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/roofplan-commercial-roofing.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Rooftop work shot from the air at golden hour, scaled across a commercial property.",
@@ -204,7 +205,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/pti-performance-training.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/pti-performance-training.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Training floor piece cut vertical, from the facility exterior into the session.",
@@ -219,7 +220,7 @@ export const projects: Project[] = [
     aspectRatio: 16 / 9,
     poster: "/work/wedding-jared-amanda.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/wedding-jared-amanda.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Downtown ceremony and reception, cut as a story-driven film from a live one-take event.",
@@ -235,7 +236,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/lakefront-home-aerial.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/lakefront-home-aerial.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description: "Aerial tour of a lakefront property and its grounds.",
   },
@@ -247,7 +248,7 @@ export const projects: Project[] = [
     aspectRatio: 16 / 9,
     poster: "/work/live-music-concert.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/live-music-concert.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Concert coverage cut to the performance, shot under heavy stage lighting.",
@@ -260,7 +261,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/metal-fabrication.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/metal-fabrication.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Shop-floor process piece: CNC plasma cutting, welding, and finished assemblies.",
@@ -273,7 +274,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/garden-gate-landscape.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/garden-gate-landscape.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "A designed garden shot as a slow walk through it. Opens on a title card reading “The art of landscape design”.",
@@ -286,7 +287,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/concrete-parking-structure.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/concrete-parking-structure.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Captioned vertical on a concrete deck build, from aerial scale down to crews finishing the surface.",
@@ -299,7 +300,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/gym-comeback-promo.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/gym-comeback-promo.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description: "Captioned gym promo cut to a spoken piece to camera.",
   },
@@ -311,7 +312,7 @@ export const projects: Project[] = [
     aspectRatio: 16 / 9,
     poster: "/work/stone-slab-yard.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/stone-slab-yard.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Stone selection and fabrication, from the slab yard through to finishing by hand.",
@@ -324,7 +325,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/reflecting-pool-landscape.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/reflecting-pool-landscape.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Planting, pergola and water in a designed outdoor space. Possibly the same property as Landscape Design.",
@@ -337,7 +338,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/playground-turf-install.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/playground-turf-install.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Playground equipment set on new artificial turf, cut as a captioned vertical.",
@@ -350,7 +351,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/lawn-before-after-aerial.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/lawn-before-after-aerial.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Aerial before-and-after on a residential lawn, with an on-screen reveal.",
@@ -363,7 +364,7 @@ export const projects: Project[] = [
     aspectRatio: 9 / 16,
     poster: "/work/hardscape-pavers.webp",
     video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/hardscape-pavers.mp4" },
-    role: ["Edited", "Color"],
+    role: ["Directed", "Shot", "Edited", "Color", "Sound"],
     tools: ["DaVinci Resolve"],
     description:
       "Stone patio and paver detail work, shot close and cut slow.",

@@ -38,7 +38,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     title: "Color",
-    body: "Establish the look, then hold it: a consistent grade across the whole project, S-Log3 to Rec.709.",
+    body: "Establish the look, then hold it: a consistent grade across the whole project, log to Rec.709.",
   },
   {
     title: "Sound",
@@ -46,7 +46,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     title: "Finish & Deliver",
-    body: "Platform-specific export specs, captions and subtitles, including Spanish SRT.",
+    body: "Platform-specific export specs, captions and subtitles.",
   },
   {
     title: "Archive & Handoff",
