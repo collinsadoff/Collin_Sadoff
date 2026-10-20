@@ -136,7 +136,7 @@ export const projects: Project[] = [
     categories: ["Construction", "Real Estate"],
     aspectRatio: 9 / 16,
     poster: "/work/goat-turf-brand-film.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/goat-turf-brand-film.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -150,7 +150,7 @@ export const projects: Project[] = [
     categories: ["Real Estate"],
     aspectRatio: 16 / 9,
     poster: "/work/1509-texas-ave-property-tour.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/1509-texas-ave-property-tour.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -163,7 +163,7 @@ export const projects: Project[] = [
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/bent-river-steel-install.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/bent-river-steel-install.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -176,7 +176,7 @@ export const projects: Project[] = [
     categories: ["Fitness"],
     aspectRatio: 9 / 16,
     poster: "/work/evolve-fitness-team.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/evolve-fitness-team.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -189,7 +189,7 @@ export const projects: Project[] = [
     categories: ["Construction"],
     aspectRatio: 16 / 9,
     poster: "/work/roofplan-commercial-roofing.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/roofplan-commercial-roofing.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     categories: ["Fitness"],
     aspectRatio: 9 / 16,
     poster: "/work/pti-performance-training.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/pti-performance-training.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -218,7 +218,7 @@ export const projects: Project[] = [
     // runtime as a look; the poster keeps those bars so the two match.
     aspectRatio: 16 / 9,
     poster: "/work/wedding-jared-amanda.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/wedding-jared-amanda.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -234,7 +234,7 @@ export const projects: Project[] = [
     categories: ["Real Estate"],
     aspectRatio: 9 / 16,
     poster: "/work/lakefront-home-aerial.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/lakefront-home-aerial.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description: "Aerial tour of a lakefront property and its grounds.",
@@ -246,7 +246,7 @@ export const projects: Project[] = [
     categories: ["Events"],
     aspectRatio: 16 / 9,
     poster: "/work/live-music-concert.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/live-music-concert.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -259,7 +259,7 @@ export const projects: Project[] = [
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/metal-fabrication.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/metal-fabrication.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -272,7 +272,7 @@ export const projects: Project[] = [
     categories: ["Real Estate"],
     aspectRatio: 9 / 16,
     poster: "/work/garden-gate-landscape.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/garden-gate-landscape.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -285,7 +285,7 @@ export const projects: Project[] = [
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/concrete-parking-structure.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/concrete-parking-structure.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -298,7 +298,7 @@ export const projects: Project[] = [
     categories: ["Fitness"],
     aspectRatio: 9 / 16,
     poster: "/work/gym-comeback-promo.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/gym-comeback-promo.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description: "Captioned gym promo cut to a spoken piece to camera.",
@@ -310,7 +310,7 @@ export const projects: Project[] = [
     categories: ["Construction"],
     aspectRatio: 16 / 9,
     poster: "/work/stone-slab-yard.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/stone-slab-yard.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -323,7 +323,7 @@ export const projects: Project[] = [
     categories: ["Real Estate"],
     aspectRatio: 9 / 16,
     poster: "/work/reflecting-pool-landscape.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/reflecting-pool-landscape.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -336,7 +336,7 @@ export const projects: Project[] = [
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/playground-turf-install.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/playground-turf-install.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -349,7 +349,7 @@ export const projects: Project[] = [
     categories: ["Real Estate"],
     aspectRatio: 9 / 16,
     poster: "/work/lawn-before-after-aerial.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/lawn-before-after-aerial.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
@@ -362,7 +362,7 @@ export const projects: Project[] = [
     categories: ["Construction"],
     aspectRatio: 9 / 16,
     poster: "/work/hardscape-pavers.webp",
-    video: { type: "mp4", src: "" },
+    video: { type: "mp4", src: "https://storage.googleapis.com/weddingcam-films/Collin-Sadoff-Portfolio/hardscape-pavers.mp4" },
     role: ["Edited", "Color"],
     tools: ["DaVinci Resolve"],
     description:
