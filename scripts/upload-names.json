@@ -116,5 +116,17 @@
     "name": "stone-slab-yard",
     "note": "Slab yard, two men reviewing samples, forklift moving stone.",
     "sure": false
+  },
+  "Costa Rica.MP4": {
+    "name": "costa-rica-travel-film",
+    "note": "Travel piece: misty rainforest canopy, jungle, horseback riders on the beach shot from the air, riders under palms. Source is 4K vertical HEVC (2160x3840).",
+    "sure": false,
+    "poster": "30%"
+  },
+  "Costa Rica_thm2_prob3.MP4": {
+    "name": "costa-rica-wildlife",
+    "note": "Travel piece: burning orange sunset over a sea stack, beach riders, windswept hillside, a monkey in the canopy. Source is 8K vertical HEVC (4320x7680) - the largest frame in the set.",
+    "sure": false,
+    "poster": "15%"
   }
 }

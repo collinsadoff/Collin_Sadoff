@@ -43,6 +43,7 @@ export const CATEGORIES = [
   "Public Figures",
   "Fitness",
   "Medical",
+  "Travel",
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];
@@ -224,6 +225,33 @@ export const projects: Project[] = [
     tools: ["DaVinci Resolve"],
     description:
       "Downtown ceremony and reception, cut as a story-driven film from a live one-take event.",
+  },
+
+  {
+    id: "costa-rica-travel-film",
+    title: "Travel Film",
+    client: "Costa Rica",
+    categories: ["Travel"],
+    aspectRatio: 9 / 16,
+    poster: "/work/costa-rica-travel-film.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Directed", "Shot", "Edited", "Color", "Sound", "Drone"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Rainforest canopy, coastline and horseback riders shot from the air. Captured 4K vertical.",
+  },
+  {
+    id: "costa-rica-wildlife",
+    title: "Wildlife",
+    client: "Costa Rica",
+    categories: ["Travel"],
+    aspectRatio: 9 / 16,
+    poster: "/work/costa-rica-wildlife.webp",
+    video: { type: "mp4", src: "" },
+    role: ["Directed", "Shot", "Edited", "Color", "Sound", "Drone"],
+    tools: ["DaVinci Resolve"],
+    description:
+      "Sunset over a sea stack, windswept hillside and a monkey in the canopy. Captured 8K vertical.",
   },
 
   // ---- client unconfirmed: replace `CLIENT TBD` before publishing ---------
