@@ -43,7 +43,19 @@ export function VideoPlayer({
         playsInline
         preload="metadata"
       >
-        <track kind="captions" />
+        {/* A real caption track only when there is one to point at. An empty
+            <track> advertises captions that do not exist, which is worse for
+            a screen-reader user than having none. */}
+        {source.captions?.map((track, index) => (
+          <track
+            key={track.src}
+            kind="subtitles"
+            src={track.src}
+            srcLang={track.lang}
+            label={track.label}
+            default={index === 0}
+          />
+        ))}
       </video>
     );
   }

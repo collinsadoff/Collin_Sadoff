@@ -54,10 +54,31 @@ export type VideoSourceType =
   | "cloudflare"
   | "mp4";
 
+export type CaptionTrack = {
+  /** URL of a WebVTT file. Browsers do NOT read .srt - convert it first. */
+  src: string;
+  /** BCP-47 language tag, e.g. "en" or "es". */
+  lang: string;
+  /** What the player shows in its subtitle menu, e.g. "Espanol". */
+  label: string;
+};
+
 export type VideoSource = {
   type: VideoSourceType;
   /** Provider id or full URL - see the table above. "" = placeholder. */
   src: string;
+  /**
+   * OPTIONAL subtitle tracks. Only applies to `type: "mp4"` - the hosted
+   * players carry their own captions, uploaded on their side.
+   *
+   * Browsers need WebVTT, not SRT. To convert, add a "WEBVTT" line at the
+   * top of the file and change the comma in each timestamp to a period
+   * (00:00:01,500 becomes 00:00:01.500), or run:
+   *   ffmpeg -i subtitles.srt subtitles.vtt
+   *
+   * The first track in the list is the default.
+   */
+  captions?: CaptionTrack[];
 };
 
 export type Role =
