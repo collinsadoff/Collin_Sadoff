@@ -20,6 +20,21 @@
  *   --dry-run       Print what would happen, encode nothing.
  *   --force         Re-encode files that are already in the output folder.
  *
+ *   --posters       Poster mode: skip the video entirely and write one still
+ *                   per film into --poster-dir, named from the same map.
+ *                   Frames come from the ORIGINALS, not the compressed
+ *                   copies, so the still is first-generation.
+ *   --poster-dir <dir>  Where stills go (default: public/work)
+ *   --poster-at <t>     Default frame position: a percentage like "25%" or a
+ *                   timestamp like "00:00:12". Per-film overrides go in the
+ *                   map as a "poster" field, which is how you pick a good
+ *                   frame rather than accepting whatever is at 25%.
+ *   --jpg           Stills as .jpg instead of .webp.
+ *   --no-autocrop   Keep baked-in letterbox bars. By default a poster has
+ *                   black borders trimmed, so a film with a letterboxed look
+ *                   does not put bars inside the tile. The trim is capped at
+ *                   12% a side so a genuinely dark shot is left alone.
+ *
  * What it does to each file, and why:
  *   - re-encodes to H.264 at a sane bitrate. These are delivery masters;
  *     a 363MB 30-second clip is ~100x larger than it needs to be on the web,
@@ -33,7 +48,7 @@
  *   - writes MANIFEST.md listing old name, new name, and the size saved.
  */
 
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { mkdir, readdir, readFile, writeFile, stat, access } from "node:fs/promises";
 import path from "node:path";
 
@@ -48,6 +63,11 @@ function parseArgs(argv) {
     dryRun: false,
     force: false,
     jobs: 2,
+    posters: false,
+    posterDir: "public/work",
+    posterAt: "25%",
+    jpg: false,
+    autocrop: true,
   };
   for (let i = 0; i < argv.length; i++) {
     const next = () => argv[++i];
@@ -61,6 +81,11 @@ function parseArgs(argv) {
       case "--jobs": o.jobs = Math.max(1, Number(next())); break;
       case "--dry-run": o.dryRun = true; break;
       case "--force": o.force = true; break;
+      case "--posters": o.posters = true; break;
+      case "--poster-dir": o.posterDir = next(); break;
+      case "--poster-at": o.posterAt = next(); break;
+      case "--jpg": o.jpg = true; break;
+      case "--no-autocrop": o.autocrop = false; break;
       case "-h":
       case "--help": o.help = true; break;
       default:
@@ -117,6 +142,117 @@ const human = (b) =>
       : `${Math.round(b / 1024)} KB`;
 
 const exists = (p) => access(p).then(() => true, () => false);
+
+/**
+ * Resolve a frame position to seconds. Accepts "25%", "12", or "00:00:12".
+ * Percentages need the clip length, which is why duration is passed in.
+ */
+function resolveAt(at, duration) {
+  if (typeof at === "number") return String(at);
+  const s = String(at).trim();
+  if (s.endsWith("%")) {
+    const pct = Number(s.slice(0, -1));
+    return ((duration || 0) * (Number.isFinite(pct) ? pct : 25) / 100).toFixed(2);
+  }
+  return s;
+}
+
+/**
+ * Detect baked-in black bars around the frame and return an ffmpeg crop
+ * filter for them, plus the aspect ratio of what is left.
+ *
+ * Some finished films carry a letterbox as part of their look. A poster cut
+ * from one has black bars inside it, which then sit inside the tile.
+ *
+ * This decodes the actual frame and measures it rather than using ffmpeg's
+ * cropdetect, which proved unreliable here: on a film with a clear 78px
+ * letterbox it reported the full frame. Row and column MEANS are used, not
+ * individual pixels, so a dark-but-real row survives while a true bar does
+ * not.
+ *
+ * maxTrim caps how much may be removed per axis. 0.30 covers every common
+ * letterbox up to 2.39:1 inside 16:9 (which costs ~26% of the height) while
+ * still refusing to crop a frame that is simply dark.
+ */
+async function detectCrop(file, at, maxTrim = 0.3, threshold = 12) {
+  const info = await probe(file);
+  if (!info.width || !info.height) return null;
+
+  // Decode one frame, downscaled - we only need the shape of the borders.
+  const W = 320;
+  const H = Math.max(2, Math.round((W * info.height) / info.width));
+  let buf;
+  try {
+    const r = spawnSync(
+      "ffmpeg",
+      ["-hide_banner", "-loglevel", "error", "-ss", String(at), "-i", file,
+       "-frames:v", "1", "-vf", `scale=${W}:${H}`,
+       "-f", "rawvideo", "-pix_fmt", "gray", "-"],
+      { maxBuffer: 1 << 26 },
+    );
+    buf = r.stdout;
+  } catch {
+    return null;
+  }
+  if (!buf || buf.length < W * H) return null;
+
+  const rowMean = (y) => {
+    let sum = 0;
+    for (let x = 0; x < W; x++) sum += buf[y * W + x];
+    return sum / W;
+  };
+  const colMean = (x) => {
+    let sum = 0;
+    for (let y = 0; y < H; y++) sum += buf[y * W + x];
+    return sum / H;
+  };
+
+  let top = 0;
+  while (top < H / 2 && rowMean(top) <= threshold) top++;
+  let bottom = 0;
+  while (bottom < H / 2 && rowMean(H - 1 - bottom) <= threshold) bottom++;
+  let left = 0;
+  while (left < W / 2 && colMean(left) <= threshold) left++;
+  let right = 0;
+  while (right < W / 2 && colMean(W - 1 - right) <= threshold) right++;
+
+  /**
+   * Symmetry is what separates a letterbox from a dark picture. A real bar
+   * is the same thickness on both sides; a night sky, a shadowed wall or a
+   * stage lit from the centre is not. Without this test a concert frame gets
+   * its dark edges "cropped" and the poster silently changes shape.
+   */
+  const symmetric = (a, b) => {
+    if (a === 0 && b === 0) return false;
+    if (a === 0 || b === 0) return false;
+    return Math.abs(a - b) <= Math.max(1, 0.15 * Math.max(a, b));
+  };
+
+  if (!symmetric(top, bottom)) top = bottom = 0;
+  if (!symmetric(left, right)) left = right = 0;
+  if (top === 0 && bottom === 0 && left === 0 && right === 0) return null;
+
+  const keepH = (H - top - bottom) / H;
+  const keepW = (W - left - right) / W;
+
+  // Ignore trims too small to matter - a one-pixel edge is encoder noise.
+  if (1 - keepH < 0.02 && 1 - keepW < 0.02) return null;
+  if (keepH < 1 - maxTrim || keepW < 1 - maxTrim) return null; // dark frame
+
+  // Scale the measured box back to source pixels, rounded to even numbers.
+  const even = (n) => Math.max(2, Math.round(n / 2) * 2);
+  const cw = even(keepW * info.width);
+  const ch = even(keepH * info.height);
+  const cx = even((left / W) * info.width);
+  const cy = even((top / H) * info.height);
+
+  return {
+    filter: `crop=${cw}:${ch}:${cx}:${cy}`,
+    trimmedH: 1 - keepH,
+    trimmedW: 1 - keepW,
+    aspect: cw / ch,
+  };
+}
 
 async function pool(items, limit, task) {
   const out = [];
@@ -192,6 +328,75 @@ async function main() {
         unsure.map((f) => `    ${map[f].name}   <- ${f}`).join("\n") +
         "\n",
     );
+  }
+
+  /* ---------------------------------------------------------- posters --- */
+  if (opts.posters) {
+    const ext = opts.jpg ? "jpg" : "webp";
+    await mkdir(opts.posterDir, { recursive: true });
+    console.log(
+      `Writing ${todo.length} poster(s) -> ${opts.posterDir}/  ` +
+        `(1600px long edge, .${ext}, from the originals)\n`,
+    );
+
+    const made = await pool(todo, opts.jobs, async (file) => {
+      const src = path.join(opts.in, file);
+      const name = `${map[file].name}.${ext}`;
+      const dst = path.join(opts.posterDir, name);
+
+      if (!opts.force && (await exists(dst))) {
+        console.log(`  skip  ${name}  (exists - use --force to redo)`);
+        return { file, name, skipped: true };
+      }
+      try {
+        const info = await probe(src);
+        const at = resolveAt(map[file].poster ?? opts.posterAt, info.duration);
+        if (opts.dryRun) {
+          console.log(`  would write ${name.padEnd(38)} frame @ ${at}`);
+          return { file, name, dryRun: true };
+        }
+        const crop = opts.autocrop ? await detectCrop(src, at) : null;
+        const vf = [
+          crop?.filter,
+          "scale=1600:1600:force_original_aspect_ratio=decrease",
+        ]
+          .filter(Boolean)
+          .join(",");
+
+        await run("ffmpeg", [
+          "-hide_banner", "-loglevel", "error", "-y",
+          "-ss", at,
+          "-i", src,
+          "-frames:v", "1",
+          "-vf", vf,
+          ...(opts.jpg ? ["-q:v", "3"] : ["-quality", "82"]),
+          dst,
+        ]);
+        const size = (await stat(dst)).size;
+        const trimmed = crop
+          ? `  trimmed ${Math.round(crop.trimmedH * 100)}% letterbox -> ` +
+            `aspectRatio ${crop.aspect.toFixed(2)}`
+          : "";
+        console.log(
+          `  ok    ${name.padEnd(38)} frame @ ${String(at).padStart(8)}  ${human(size)}${trimmed}`,
+        );
+        return { file, name, at, size };
+      } catch (err) {
+        console.error(`  FAIL  ${file}\n          ${err.message}`);
+        return { file, name, error: String(err.message) };
+      }
+    });
+
+    const good = made.filter((r) => r && !r.error && !r.skipped && !r.dryRun);
+    if (good.length) {
+      console.log(
+        `\n${good.length} poster(s), ${human(good.reduce((s, r) => s + r.size, 0))} total.\n` +
+          `\nTo change a frame, add a "poster" to that entry in ${opts.map}:\n` +
+          `    "poster": "00:00:12"\n` +
+          `then re-run with --posters --force.`,
+      );
+    }
+    return;
   }
 
   if (opts.dryRun) {

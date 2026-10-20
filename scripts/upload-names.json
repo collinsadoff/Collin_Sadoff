@@ -15,12 +15,12 @@
     "",
     "Edit freely, then re-run with --force to rebuild."
   ],
-
   "1 (1).mp4": {
     "name": "1509-texas-ave-property-tour",
-    "note": "Empty staged interior, hardwood, green exterior. Real estate walkthrough.",
+    "note": "Property tour. A burned-in title card at 0:39 reads \"1509 Texas Ave\", which confirms the name. Poster uses the clean exterior just before it, to avoid text over the tile caption.",
     "sure": true,
-    "evidence": "Byte size 110167559 matches '1509 Texas Ave.mp4'"
+    "evidence": "Byte size 110167559 matches '1509 Texas Ave.mp4'",
+    "poster": "13.18"
   },
   "1 (4).mp4": {
     "name": "bent-river-steel-install",
@@ -42,9 +42,10 @@
   },
   "1 (14).mp4": {
     "name": "wedding-jared-amanda",
-    "note": "Bridal shoes, family portrait, B&W ceremony. 3:48 wedding film.",
+    "note": "Wedding film, 3:48. The film alternates between full-frame and a 2.15:1 letterboxed look, so the poster is taken from a verified full-frame moment (couple downtown, 3:34) - otherwise the tile would carry baked-in black bars.",
     "sure": true,
-    "evidence": "Byte size 420039769 matches 'Jared + Amanda - Wedding Video.mp4'"
+    "evidence": "Byte size 420039769 matches 'Jared + Amanda - Wedding Video.mp4'",
+    "poster": "214"
   },
   "Roofplan.mp4": {
     "name": "roofplan-commercial-roofing",
@@ -52,7 +53,6 @@
     "sure": true,
     "evidence": "Already named in the source folder"
   },
-
   "1 (17).mp4": {
     "name": "live-music-concert",
     "note": "Stage lighting, band performing, crowd. File dated Jan 2021.",
@@ -60,8 +60,10 @@
   },
   "1 (19).mp4": {
     "name": "pti-performance-training",
-    "note": "'Performance Training, Inc.' building signage, gym floor, assault bike.",
-    "sure": false
+    "note": "Gym. Poster is the pull-up - clean silhouette, reads well small.",
+    "sure": true,
+    "poster": "5.86",
+    "evidence": "Building signage in frame reads \"PERFORMANCE TRAINING, INC.\""
   },
   "1 (21).mp4": {
     "name": "gym-comeback-promo",
@@ -85,8 +87,9 @@
   },
   "1 (64).mp4": {
     "name": "garden-gate-landscape",
-    "note": "White gate, planting beds, white brick wall, gravel path.",
-    "sure": false
+    "note": "Landscape design. Title card at 0:02 reads \"The art of LANDSCAPE DESIGN\". Default 25% frame was a soft rack-focus; poster now uses the gravel terrace at 0:24.",
+    "sure": false,
+    "poster": "23.9"
   },
   "1 (65).mp4": {
     "name": "reflecting-pool-landscape",
