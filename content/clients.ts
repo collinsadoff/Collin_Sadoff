@@ -16,11 +16,12 @@
  */
 
 /** How many of the names below the resume prints. */
-export const resumeCount = 11;
+export const resumeCount = 12;
 
 export const clients: string[] = [
   // --- printed on the resume -----------------------------------------------
   // Local name recognition first, then range across the verticals.
+  "Moon Taxi",
   "Russell Biven",
   "Curt Maggitt",
   "SVN",

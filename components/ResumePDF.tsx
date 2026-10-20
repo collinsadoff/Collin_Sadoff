@@ -31,20 +31,27 @@ const styles = StyleSheet.create({
     color: "#111111",
     lineHeight: 1.35,
   },
+  // Every text style here sets its own lineHeight on purpose. react-pdf does
+  // not cascade the Page's lineHeight down to Text the way CSS would, so a
+  // large Text falls back to a box shorter than its own glyphs - which is what
+  // made the title draw on top of the name in the downloaded PDF.
   name: {
     fontFamily: "Helvetica-Bold",
     fontSize: 21,
+    lineHeight: 1.2,
     letterSpacing: 0.5,
     textTransform: "uppercase",
+    marginBottom: 3,
   },
   title: {
     fontFamily: "Helvetica-Bold",
     fontSize: 10,
-    marginTop: 3,
+    lineHeight: 1.2,
     color: "#333333",
   },
   contact: {
     fontSize: 8,
+    lineHeight: 1.3,
     marginTop: 5,
     color: "#555555",
   },
@@ -57,6 +64,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontFamily: "Helvetica-Bold",
     fontSize: 8,
+    lineHeight: 1.3,
     letterSpacing: 1.5,
     textTransform: "uppercase",
     paddingBottom: 2.5,
@@ -70,9 +78,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "flex-end",
   },
-  company: { fontFamily: "Helvetica-Bold", fontSize: 9.8, flexShrink: 1 },
+  company: { fontFamily: "Helvetica-Bold", fontSize: 9.8, lineHeight: 1.3, flexShrink: 1 },
   roleName: { fontFamily: "Helvetica", color: "#444444" },
-  dates: { fontSize: 8, color: "#666666", textAlign: "right" },
+  dates: { fontSize: 8, lineHeight: 1.3, color: "#666666", textAlign: "right" },
   bulletRow: { flexDirection: "row", marginTop: 1.5 },
   bulletMark: { width: 9, color: "#666666" },
   bulletText: { flex: 1, color: "#222222" },
