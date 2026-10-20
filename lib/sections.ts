@@ -17,7 +17,6 @@ export type Section = {
 
 export const sections: Section[] = [
   { id: "work", nav: "Work", label: "Work", inNav: true },
-  { id: "color", nav: "Color", label: "Color", inNav: true },
   { id: "about", nav: "About", label: "About", inNav: true },
   { id: "process", nav: "Process", label: "How I Work", inNav: true },
   { id: "experience", nav: "Experience", label: "Experience", inNav: true },

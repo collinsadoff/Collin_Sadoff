@@ -1,28 +1,44 @@
 /**
- * CLIENTS — typographic list on the homepage and the "Selected Clients" line
- * on the resume.
+ * CLIENTS - the "Selected Clients" line on the resume.
  *
- * HOW TO EDIT: add or remove a name. Order here is the order rendered.
- * No logos anywhere — names only, by design.
+ * The homepage no longer lists clients; this feeds the resume only.
+ *
+ * HOW TO EDIT: add or remove a name. Order matters - the resume prints the
+ * first `resumeCount` of them, so the strongest and most recognisable names
+ * go at the top. Everything below that line stays on record here without
+ * taking up space on a one-page resume.
+ *
+ * Why a cut rather than the full list: "selected" should mean selected. An
+ * eighteen-name dump reads as everyone who ever paid an invoice, costs three
+ * lines, and buries the names a Knoxville hiring manager would actually
+ * recognise. Raise `resumeCount` if you want more; the resume is checked
+ * against one page, so watch that it still fits.
  */
 
+/** How many of the names below the resume prints. */
+export const resumeCount = 11;
+
 export const clients: string[] = [
-  "Dodson Designs",
-  "Goat Turf",
-  "Cornerstone Construction",
-  "RoofPlan",
-  "Hickory Construction",
-  "F.E. Trainer Construction",
+  // --- printed on the resume -----------------------------------------------
+  // Local name recognition first, then range across the verticals.
+  "Russell Biven",
+  "Curt Maggitt",
   "SVN",
+  "Cornerstone Construction",
+  "Hickory Construction",
+  "GM Construction Group",
+  "Expoquip",
+  "Goat Turf",
+  "Dodson Designs",
+  "Evolve Fitness",
+  "Revitalyze MD",
+
+  // --- on record, not printed ----------------------------------------------
+  "RoofPlan",
+  "F.E. Trainer Construction",
   "McCamy Construction",
   "PTI",
   "Reach Fitness",
-  "Russell Biven",
-  "Curt Maggitt",
   "AJ Johnson",
-  "Expoquip",
-  "Evolve Fitness",
-  "Revitalyze MD",
   "Breazeale Clinic",
-  "GM Construction Group",
 ];

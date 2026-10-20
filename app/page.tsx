@@ -2,14 +2,12 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { PortfolioGrid } from "@/components/PortfolioGrid";
-import { BeforeAfter } from "@/components/BeforeAfter";
 import { About } from "@/components/About";
 import { Process } from "@/components/Process";
 import { Timeline } from "@/components/Timeline";
 import { SkillsGrid } from "@/components/SkillsGrid";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { colorComparisons, colorHeading } from "@/content/color";
 import type { ReactNode } from "react";
 
 /** Shared section wrapper: consistent gutters, rhythm and max width. */
@@ -39,19 +37,6 @@ export default function HomePage() {
             line="Commercial, social, and event work across East Tennessee and beyond. Click any tile to play."
           />
           <PortfolioGrid />
-        </Section>
-
-        <Section id="color">
-          <SectionHeader
-            id="color"
-            label={colorHeading.title}
-            line={colorHeading.line}
-          />
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-10">
-            {colorComparisons.map((item) => (
-              <BeforeAfter key={item.id} item={item} />
-            ))}
-          </div>
         </Section>
 
         <Section id="about">

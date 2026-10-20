@@ -42,7 +42,7 @@ export function ResumeSheet({ data }: { data: ResumeData }) {
 
       {/* Experience */}
       <ResumeSection title="Experience">
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           {data.roles.map((role) => (
             <div key={role.company} className="print-block">
               <div className="flex flex-wrap items-baseline justify-between gap-x-3">
@@ -122,7 +122,7 @@ function ResumeSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="mt-3">
+    <section className="mt-2.5">
       <h2
         className="mb-1 border-b border-black/15 pb-1 text-[8.5pt] font-bold tracking-[0.16em] uppercase"
         style={{ fontFamily: "var(--font-archivo), sans-serif" }}

@@ -110,13 +110,7 @@ export function Lightbox({
 
           {/* Metadata */}
           <div className="shrink-0 px-5 py-6 sm:px-8">
-            <div className="mx-auto grid max-w-5xl gap-5 border-t border-line pt-5 sm:grid-cols-3">
-              {project.description ? (
-                <p className="text-sm leading-relaxed text-fog sm:col-span-3 md:col-span-1">
-                  {project.description}
-                </p>
-              ) : null}
-
+            <div className="mx-auto grid max-w-3xl gap-5 border-t border-line pt-5 sm:grid-cols-2">
               <MetaBlock title="Role" items={project.role} />
               {project.tools?.length ? (
                 <MetaBlock title="Tools" items={project.tools} />

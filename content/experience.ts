@@ -79,13 +79,13 @@ export const experience: Job[] = [
     location: "Knoxville, TN",
     bullets: [
       {
-        text: "Worked commercial sets as part of the production crew, supporting shoots from setup through wrap.",
+        text: "Worked commercial sets as part of the production crew, from setup through wrap.",
       },
       {
-        text: "Filmed and edited weddings end to end, covering live ceremonies that only happen once and cutting them into finished films.",
+        text: "Filmed and edited weddings end to end, from coverage through the final cut.",
       },
       {
-        text: "Owned all behind-the-scenes content: filmed it, cut it, and managed the deliverable from shoot through to handoff.",
+        text: "Owned all behind-the-scenes content: filmed it, cut it, and managed delivery.",
       },
     ],
   },

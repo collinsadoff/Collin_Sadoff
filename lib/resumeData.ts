@@ -6,7 +6,7 @@
 import { profile } from "@/content/profile";
 import { experience, publishedBullets } from "@/content/experience";
 import { skillGroups, software } from "@/content/skills";
-import { clients } from "@/content/clients";
+import { clients, resumeCount } from "@/content/clients";
 import { education } from "@/content/education";
 
 export type ResumeRole = {
@@ -71,7 +71,8 @@ export function getResumeData(): ResumeData {
       { label: "Software", value: softwareLine() },
     ],
 
-    clients: clients.join(", "),
+    // Only the first `resumeCount` print - see content/clients.ts for why.
+    clients: clients.slice(0, resumeCount).join(", "),
 
     education: education.map((item) => ({
       line: `${item.degree}, ${item.field}`,
