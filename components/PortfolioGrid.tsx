@@ -1,15 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import {
-  categoryFromSlug,
-  categorySlug,
-  projects as allProjects,
-  type Category,
-  type Project,
-} from "@/content/projects";
-import { FilterBar } from "@/components/FilterBar";
+import { projects } from "@/content/projects";
 import { VideoTile } from "@/components/VideoTile";
 import { Lightbox } from "@/components/Lightbox";
 import { useElementWidth } from "@/hooks/useElementWidth";
@@ -22,8 +15,18 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 const GUTTER = 11;
 
 /**
- * The Work section: a justified-rows grid of mixed-aspect-ratio videos, a
- * category filter synced to ?category=, and a lightbox player.
+ * The Work section: a justified-rows grid of mixed-aspect-ratio videos with a
+ * lightbox player.
+ *
+ * There is deliberately no category filter. At a curated ~15 pieces the whole
+ * grid is visible in a screen and a half, so sorting by industry would be
+ * navigation for its own sake - and the people this site is aimed at are
+ * judging craft, not shopping by vertical. Each project still carries its
+ * `categories`, which show on tile hover and in the lightbox.
+ *
+ * Running order is therefore the only curation tool: the array order in
+ * content/projects.ts is the order on screen, so the strongest work goes
+ * first, and categories read better interleaved than grouped.
  *
  * Layout is computed from the measured container width rather than from CSS
  * breakpoints, so it re-flows correctly inside any container at any zoom.
@@ -36,34 +39,10 @@ export function PortfolioGrid() {
   const isTablet = useMediaQuery("(min-width: 768px)");
   const targetRowHeight = isDesktop ? 380 : isTablet ? 280 : 200;
 
-  const [active, setActive] = useState<Category | "All">("All");
   const [openId, setOpenId] = useState<string | null>(null);
 
-  // Read ?category= on mount so a shared link opens pre-filtered.
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setActive(categoryFromSlug(params.get("category")));
-  }, []);
-
-  // Write the filter back to the URL without adding history entries.
-  const changeCategory = useCallback((next: Category | "All") => {
-    setActive(next);
-    const url = new URL(window.location.href);
-    if (next === "All") url.searchParams.delete("category");
-    else url.searchParams.set("category", categorySlug(next));
-    window.history.replaceState(null, "", `${url.pathname}${url.search}#work`);
-  }, []);
-
-  const filtered: Project[] = useMemo(
-    () =>
-      active === "All"
-        ? allProjects
-        : allProjects.filter((p) => p.categories.includes(active)),
-    [active],
-  );
-
   const { rows, totalHeight } = useJustifiedLayout(
-    filtered,
+    projects,
     width,
     targetRowHeight,
     GUTTER,
@@ -73,22 +52,20 @@ export function PortfolioGrid() {
   // predict, so a #hash deep link is re-applied once it has measured itself.
   useHashScrollCorrection(width > 0 && totalHeight > 0);
 
-  const openIndex = filtered.findIndex((p) => p.id === openId);
+  const openIndex = projects.findIndex((p) => p.id === openId);
 
   const go = useCallback(
     (delta: number) => {
-      if (openIndex < 0 || !filtered.length) return;
-      const next = (openIndex + delta + filtered.length) % filtered.length;
-      setOpenId(filtered[next].id);
+      if (openIndex < 0 || !projects.length) return;
+      const next = (openIndex + delta + projects.length) % projects.length;
+      setOpenId(projects[next].id);
     },
-    [openIndex, filtered],
+    [openIndex],
   );
 
   return (
     <>
-      <FilterBar active={active} onChange={changeCategory} />
-
-      {/* Reserve the computed height so filtering doesn't jolt the page. */}
+      {/* Reserve the computed height so the page doesn't jolt as it resolves. */}
       <div ref={ref} style={{ minHeight: totalHeight || undefined }}>
         {width === 0 ? (
           // First paint, before measurement: a quiet skeleton at target height.
@@ -97,21 +74,15 @@ export function PortfolioGrid() {
             style={{ height: targetRowHeight }}
           />
         ) : (
-          <motion.div
-            layout={!reduced}
-            className="flex flex-col"
-            style={{ gap: GUTTER }}
-          >
-            <AnimatePresence mode="popLayout" initial={false}>
+          <motion.div className="flex flex-col" style={{ gap: GUTTER }}>
+            <AnimatePresence initial={false}>
               {rows.map((row, rowIndex) => (
                 <motion.div
-                  key={`${active}-row-${rowIndex}`}
-                  layout={!reduced}
+                  key={`row-${rowIndex}`}
                   className="flex"
                   style={{ gap: GUTTER }}
                   initial={reduced ? false : { opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={reduced ? { opacity: 1 } : { opacity: 0 }}
                   transition={{
                     duration: 0.45,
                     delay: reduced ? 0 : Math.min(rowIndex * 0.05, 0.25),
@@ -134,20 +105,15 @@ export function PortfolioGrid() {
           </motion.div>
         )}
 
-        {filtered.length === 0 ? (
+        {projects.length === 0 ? (
           <p className="py-16 text-center text-fog">
-            No projects in this category yet.
+            No projects yet. Add one in content/projects.ts.
           </p>
         ) : null}
       </div>
 
-      <p className="label mt-6" aria-live="polite">
-        {filtered.length} {filtered.length === 1 ? "project" : "projects"}
-        {active === "All" ? "" : ` in ${active}`}
-      </p>
-
       <Lightbox
-        projects={filtered}
+        projects={projects}
         index={openIndex}
         onClose={() => setOpenId(null)}
         onPrev={() => go(-1)}

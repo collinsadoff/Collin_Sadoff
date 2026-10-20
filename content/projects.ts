@@ -288,23 +288,6 @@ export const projects: Project[] = [
   },
 ];
 
-/** Count of projects in a category, used by the filter bar. */
-export function countByCategory(category: Category | "All"): number {
-  if (category === "All") return projects.length;
-  return projects.filter((p) => p.categories.includes(category)).length;
-}
-
-/** URL slug <-> category label, so ?category=real-estate is shareable. */
-export function categorySlug(category: Category | "All"): string {
-  return category.toLowerCase().replace(/\s+/g, "-");
-}
-
-export function categoryFromSlug(slug: string | null): Category | "All" {
-  if (!slug) return "All";
-  const match = CATEGORIES.find((c) => categorySlug(c) === slug.toLowerCase());
-  return match ?? "All";
-}
-
 /** Human-readable aspect label for the placeholder tiles, e.g. "16:9". */
 export function aspectLabel(ratio: number): string {
   const known: [number, string][] = [

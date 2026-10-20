@@ -76,7 +76,7 @@ Open `content/projects.ts` and copy an entry:
   id: "client-project",              // unique slug
   title: "Brand Film",               // shown after the pipe
   client: "Client Name",             // shown before the pipe
-  categories: ["Construction"],      // one or more; drives the filters
+  categories: ["Construction"],      // one or more; shown on hover + lightbox
   aspectRatio: 16 / 9,               // MUST match the real media
   poster: "/work/client-poster.jpg", // still frame
   preview: "/work/client-loop.mp4",  // optional hover loop
@@ -91,7 +91,7 @@ Open `content/projects.ts` and copy an entry:
 **Fields that matter most**
 
 - **`aspectRatio`** is a number, written as a division so it stays readable: `16/9`, `9/16`, `1`, `4/5`, `2.39`. The justified grid sizes every tile from this, so a wrong value makes the row look off. Vertical videos are expected and sit naturally beside horizontal ones.
-- **`categories`** must come from this list, exactly: `Real Estate`, `Construction`, `Events`, `Public Figures`, `Fitness`, `Medical`. A project can be in several. Counts in the filter bar update automatically.
+- **`categories`** must come from this list, exactly: `Real Estate`, `Construction`, `Events`, `Public Figures`, `Fitness`, `Medical`. A project can be in several. They are context, not navigation: there is no category filter, so these only appear on tile hover and in the lightbox.
 - **`video.type`** picks the player:
 
   | type | what `src` holds | example |
@@ -107,7 +107,7 @@ Open `content/projects.ts` and copy an entry:
 
 Grid order is array order, so put your strongest work at the top.
 
-**To add a category** (say, "Nonprofit"): add it to the `CATEGORIES` array at the top of `content/projects.ts`. The type, the filter bar and the counts all follow from that one line.
+**To add a category** (say, "Nonprofit"): add it to the `CATEGORIES` array at the top of `content/projects.ts`, and the type follows from that one line.
 
 ---
 
@@ -254,6 +254,6 @@ Also add your graduation year in `content/education.ts` (leave it `""` and the y
 
 - **Color**: black, white and grays only. No accent color anywhere — the work supplies the color. The palette is four grays defined at the top of `app/globals.css`; change them there and the whole site follows.
 - **Type**: Archivo for headings, Inter for body, JetBrains Mono for metadata labels. All self-hosted at build time by `next/font`, so there is no external request and no font-swap shift.
-- **Motion**: fade-and-rise reveals on scroll, layout animation when filtering, hover states on tiles. Every one of them checks `prefers-reduced-motion` and renders the final state instantly when it is set.
+- **Motion**: fade-and-rise reveals on scroll, hover states on tiles. Every one of them checks `prefers-reduced-motion` and renders the final state instantly when it is set.
 - **Section numbers** are timecode (`01:00:00:00 — WORK`), generated from the section's position in `lib/sections.ts`. Add a section there and it gets its number, its nav link and its anchor automatically.
 - **The grid** is a custom justified-rows layout (`hooks/useJustifiedLayout.ts`). Items in a row share one height, widths stay proportional to aspect ratio, and the row fills the container exactly. It measures with `ResizeObserver`, so it reflows on any container change, not just window resizes. Target row heights are 380px desktop / 280px tablet / 200px mobile; the last row holds the target height instead of stretching.
